@@ -9,3 +9,37 @@ services:
       - "4200:4200"
     volumes:
       - ".:/app"
+  
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'db'
+      MYSQL_PASSWORD: 'root'
+
+
+
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: 'db'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - "8082:80"
+
+
+  php:
+    build: ./src/api/php
+    ports:
+      - 82:82
+    volumes:
+      - ./api/php:/var/www/html
+        # - ./api/php/.htaccess:/var/www/html/.htaccess
+    depends_on:
+      - db
