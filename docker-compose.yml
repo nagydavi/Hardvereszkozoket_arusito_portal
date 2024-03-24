@@ -1,0 +1,11 @@
+version: '3.8'
+
+
+services:
+  szamtechwebshop:
+    restart: unless-stopped
+    build: .
+    ports:
+      - "4200:4200"
+    volumes:
+      - ".:/app"
