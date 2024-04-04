@@ -32,7 +32,7 @@ export class LaptopsComponent implements OnInit {
   getAll() {
     this.laptopsService.getAll().subscribe(
         (res: Laptop[]) => {
-            this.laptops = res;
+            console.log(res);
         },
         (error) => {
             console.error('Hiba történt a laptopok lekérésekor:', error);
