@@ -1,0 +1,31 @@
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav id="sidenav">
+            <mat-nav-list>
+                <a mat-list-item routerLink="Admin/login" (click)="close(sidenav)">
+                    <mat-icon>face</mat-icon>
+                    <span>Felhasználók</span>
+                </a>
+                <a mat-list-item routerLink="Admin/login" (click)="close(sidenav)">
+                    <mat-icon>computer</mat-icon>
+                    <span>Számítógépek</span>
+                </a>
+            </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <div fxHide.gt-xs>
+                <button mat-icon-button (click)="onClickSidenav(sidenav)">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>    
+            <div>Admin</div>
+            <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+                <ul fxLayout fxLayoutGap="10px" class="menu-items">
+                    <li><a>Felhasználók</a></li>
+                    <li><a>Számítógépek</a></li>
+                </ul>
+            </div>
+        </mat-toolbar>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

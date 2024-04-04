@@ -1,6 +1,8 @@
 version: '3.8'
 
 
+
+
 services:
   szamtechwebshop:
     restart: unless-stopped
@@ -9,6 +11,7 @@ services:
       - "4200:4200"
     volumes:
       - ".:/app"
+    
   
   db:
     image: mysql:5.7
@@ -19,7 +22,7 @@ services:
       MYSQL_ROOT_PASSWORD: 'root'
       MYSQL_DATABASE: 'db'
       MYSQL_PASSWORD: 'root'
-
+    
 
 
   phpmyadmin:
@@ -32,14 +35,16 @@ services:
       MYSQL_ROOT_PASSWORD: 'root'
     ports:
       - "8082:80"
+    
 
 
   php:
-    build: ./src/api/php
+    build: ./api/php
     ports:
-      - 82:82
+      - 8080:80
     volumes:
       - ./api/php:/var/www/html
-        # - ./api/php/.htaccess:/var/www/html/.htaccess
+      - ./api/php/.htaccess:/var/www/html/.htaccess
     depends_on:
       - db
+  
