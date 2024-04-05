@@ -13,7 +13,7 @@ import { MenuComponent } from "./Admin/menu/menu.component";
 
 
 
-//la
+//lazy loading
 export const routes: Routes = [
     {path: 'admin/login', loadChildren: () => import ('./Admin/login/login.module').then(m=>m.LoginModule) },
     {path: 'admin/laptops', loadChildren: () => import ('./Admin/laptops/laptops.module').then(m=>m.LaptopsModule) },
@@ -31,7 +31,8 @@ export const routes: Routes = [
         MatSidenavModule,
         MatToolbarModule,
         MenuComponent,
-        MatListModule
+        MatListModule,
+        
     
     ],
     exports: [RouterModule]

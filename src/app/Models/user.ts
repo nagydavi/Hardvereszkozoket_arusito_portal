@@ -1,6 +1,6 @@
 export class User {
     id?: number;
     name: string = '';
-    pw: string = '';
-    type: number = 0; 
+    password: string = '';
+    type_id: number = 0; 
   }
