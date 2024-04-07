@@ -11,6 +11,8 @@ import { UserRole } from '../../../Models/userRole';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+
 
 
 

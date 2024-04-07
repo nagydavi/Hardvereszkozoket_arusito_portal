@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../../../Models/user';
 import { UserRole } from '../../../Models/userRole';
 import { environment } from '../../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule,  HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -51,7 +51,7 @@ export class DialogService {
   }
 
   create(user: User): Observable<User[]> {
-    return this.http.post(this.urlCreateUser, user).pipe(
+    return this.http.post<User>(this.urlCreateUser, user).pipe(
       map((res: any) => {
         this.users.push(res);
         return this.users;

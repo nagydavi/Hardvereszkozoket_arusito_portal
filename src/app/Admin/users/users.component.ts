@@ -84,7 +84,13 @@ export class UsersComponent implements OnInit{
         dialogConfig.disableClose = true; //ha kikattintunk akkor nem fog bezárni
         dialogConfig.autoFocus = true; //Az fromfield-re megy a fókusz
 
-        this.dialog.open(DialogComponent, dialogConfig);
+        const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+          // Az oldal újratöltése a dialógusablak bezárása után
+          window.location.reload();
+        });
         }
 
       editUser(user: User) {
