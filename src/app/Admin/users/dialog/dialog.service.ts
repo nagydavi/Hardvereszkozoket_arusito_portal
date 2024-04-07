@@ -22,11 +22,8 @@ interface ApiResponseRole {
 export class DialogService {
 
 
-  private url = environment.apiUrl + 'User/' + 'Uread';
   private urlRole = environment.apiUrl + 'User/' + 'URread';
-  private urlCreateUser = environment.apiUrl + 'User/' + 'Ucreate';
   
-  users: User[] = [];
   roles: UserRole[] = [];
 
 
@@ -40,24 +37,5 @@ export class DialogService {
       })
     )
   }
-
-  getAllUser(): Observable<User[]>{
-    return this.http.get<ApiResponse>(this.url).pipe(
-      map((res) => {
-        this.users = res['users'];
-        return this.users
-      })
-    )
-  }
-
-  create(user: User): Observable<User[]> {
-    return this.http.post<User>(this.urlCreateUser, user).pipe(
-      map((res: any) => {
-        this.users.push(res);
-        return this.users;
-      })
-    )
-  }
-
 
 }

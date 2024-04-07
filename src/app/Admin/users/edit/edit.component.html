@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Felhasználó szerkesztése</h2>
+
+<mat-dialog-content [formGroup]="form">
+    <mat-form-field>
+        <input matInput type="text" placeholder="Név" formControlName="username">
+    </mat-form-field>
+      <br>
+    <mat-form-field>
+        <input matInput type="password" placeholder="Jelszó" formControlName="password">
+    </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-select matInput placeholder="Jogosultság" formControlName="type">
+            <mat-option *ngFor="let role of roles" [value]="role.id">
+                {{ role.role_name }}
+              </mat-option>
+        </mat-select>
+      </mat-form-field> 
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="buttons"(click)="close()">Mégse</button>
+    <button class="buttons"(click)="update()">Mentés</button>
+</mat-dialog-actions>

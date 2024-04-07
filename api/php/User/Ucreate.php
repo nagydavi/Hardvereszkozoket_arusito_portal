@@ -1,8 +1,7 @@
 <?php
 include("../connect.php");
 
-
-mysqli_set_charset($conn, 'utf-8');
+$conn->set_charset("utf8");
 
 // Ellenőrizzük, hogy a POST kérés tartalmaz-e adatokat
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -20,11 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Ellenőrizzük, hogy minden szükséges adatot megkaptunk-e
     if (!isset($data->name) || !isset($data->password) || !isset($data->type_id)) {
         http_response_code(400);
+        echo json_encode($data);
         echo json_encode(array('error' => 'Hiányzó adat(ok).'));
         exit;
     }
 
-    // Adatok kinyerése a JSON objektumból
+    // Adatok kinyerése a JSON objektumból 
     $name = $data->name;
     $password = $data->password;
     $type_id = $data->type_id;
@@ -65,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     // Ha nem POST kérés érkezett, visszaadjuk a megfelelő hibakódot
     http_response_code(405);
+    echo $_SERVER['REQUEST_METHOD'];
     echo json_encode(array('error' => 'Csak POST kérések engedélyezettek.'));
 }
 ?>

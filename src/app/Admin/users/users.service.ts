@@ -20,6 +20,8 @@ export class UsersService {
 
   private url = environment.apiUrl + 'User/' + 'Uread';
   private urlRole = environment.apiUrl + 'User/' + 'URread';
+  private urlCreateUser = environment.apiUrl + 'User/' +'Ucreate';
+  
   users: User[] = [];
   roles: UserRole[] = [];
   
@@ -40,6 +42,16 @@ export class UsersService {
       map((res) => {
         this.roles = res['user_role'];
         return this.roles
+      })
+    )
+  }
+
+
+  create(user: User): Observable<User[]> {
+    return this.http.post<User>(this.urlCreateUser, user).pipe(
+      map((res: any) => {
+        this.users.push(res);
+        return res['users'];
       })
     )
   }

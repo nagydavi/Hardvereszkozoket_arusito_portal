@@ -8,6 +8,8 @@ import { MatIcon } from '@angular/material/icon';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatDialog, MatDialogModule,MatDialogConfig} from "@angular/material/dialog";
 import { DialogComponent } from './dialog/dialog.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { EditComponent } from './edit/edit.component';
 
 
 
@@ -24,7 +26,8 @@ import { DialogComponent } from './dialog/dialog.component';
       MatIcon,
       MatTableModule,
       MatDialogModule,
-      DialogComponent
+      DialogComponent,
+      HttpClientModule
     ],
 
 })
@@ -33,6 +36,7 @@ export class UsersComponent implements OnInit{
     users: User[]=[];
     roles: UserRole[]=[];
     createUser = new User();
+    editUserData = new User();
     displayedColumns: string[] = ['index', 'name', 'role', 'actions'];
     dataSource!: MatTableDataSource<User>;
 
@@ -76,6 +80,18 @@ export class UsersComponent implements OnInit{
         return role ? role.role_name : '';
       }
 
+      create() {
+        this.usersService.create(this.createUser).subscribe(
+          (res: User[]) => {
+            this.users = res;
+            this.createUser.name = '';
+            this.createUser.password = '';
+            this.createUser.type_id = 0;
+            this.getAll();
+          }
+        )
+      }
+
     
       //A modal-ért lesz felelős, ez nyitja meg majd a dialogot(modalt)
       openDialog() {
@@ -87,14 +103,37 @@ export class UsersComponent implements OnInit{
         const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
 
         dialogRef.afterClosed().subscribe(result => {
+          this.createUser.name = result['username']
+          this.createUser.password = result['password']
+          this.createUser.type_id = result['type']
+
           console.log('The dialog was closed');
-          // Az oldal újratöltése a dialógusablak bezárása után
-          window.location.reload();
+          console.log(this.createUser);
+          this.create();
+
+         
         });
         }
 
       editUser(user: User) {
-        throw new Error('Method not implemented.');
+        const dialogConfig = new MatDialogConfig();
+        
+        dialogConfig.disableClose = true; //ha kikattintunk akkor nem fog bezárni
+        dialogConfig.autoFocus = true; //Az fromfield-re megy a fókusz
+        dialogConfig.data = user; // Felhasználó átadása a dialógusnak
+
+
+        const dialogRef = this.dialog.open(EditComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result => {
+          this.editUserData.name = result['username']
+          this.editUserData.password = result['password']
+          this.editUserData.type_id = result['type']
+
+          console.log('The dialog was closed');
+          console.log(this.createUser);
+         
+        });
         }
           
 

@@ -11,7 +11,6 @@ import { UserRole } from '../../../Models/userRole';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
 
 
 
@@ -53,7 +52,6 @@ export class DialogComponent {
 
   ngOnInit(): void {
 
-    this.getAll();
     this.getAllRole();
     
   }
@@ -70,33 +68,13 @@ export class DialogComponent {
   }
 
   save() {
-    this.create();
-    this.dialogRef.close();
-  }
-  close() {
-    this.dialogRef.close();
-
-  }
-
-  create() {
     const username = this.form.get('username')?.value;
     const password = this.form.get('password')?.value;
     const type_id = this.form.get('type')?.value;
 
 
     if(username && password && type_id){
-      const createUser: User = {
-        name: username,
-        password: password,
-        type_id: type_id
-      }
-      this.dialogService.create(createUser).subscribe(
-        (res: User[]) => {
-          this.users=res;
-          //A form értekeit visszaállítjuk
-          this.form.reset();
-        }
-      )
+      this.dialogRef.close(this.form.value);
     }else{
       // Ha valamelyik mező nincs kitöltve, megjelenítünk egy értesítést az alján
       this.snackBar.open('Minden mező kitöltése kötelező!', 'Értem', {
@@ -105,20 +83,13 @@ export class DialogComponent {
         horizontalPosition: 'center', // Elhelyezkedés: középen
     });
     }
-    
+      
 
-   
+    
   }
-  
-  getAll() {
-    this.dialogService.getAllUser().subscribe(
-      (res: User[]) => {
-        this.users = res;
-      },
-      (error) => {
-        console.error('Hiba történt a Userek lekérésekor:', error);
-    }
-    );
+  close() {
+    this.dialogRef.close();
+
   }
 
 }
