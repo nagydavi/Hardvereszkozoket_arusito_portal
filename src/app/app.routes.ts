@@ -9,6 +9,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule, MatListSubheaderCssMatStyler } from '@angular/material/list';
 import { MenuComponent } from "./Admin/menu/menu.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -21,6 +25,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
+   
     imports: [
         RouterModule.forRoot(routes),
         MatFormFieldModule,
@@ -32,9 +37,13 @@ export const routes: Routes = [
         MatToolbarModule,
         MenuComponent,
         MatListModule,
+        MatDialogModule,
+        BrowserModule,
+        FormsModule
         
     
     ],
     exports: [RouterModule]
+
   })
   export class AppRoutingModule { }

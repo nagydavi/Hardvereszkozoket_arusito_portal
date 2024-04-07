@@ -1,4 +1,7 @@
 <app-menu></app-menu>
+<div>
+    <button mat-raised-button class="create-button" (click)="openDialog()">Létrehozás</button>
+</div>
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="index">
     <mat-header-cell *matHeaderCellDef>#</mat-header-cell>

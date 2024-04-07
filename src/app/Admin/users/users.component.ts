@@ -6,6 +6,10 @@ import { UserRole } from '../../Models/userRole';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatDialog, MatDialogModule,MatDialogConfig} from "@angular/material/dialog";
+import { DialogComponent } from './dialog/dialog.component';
+
+
 
 
 
@@ -18,23 +22,29 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
       MenuComponent,
       CommonModule,
       MatIcon,
-      MatTableModule
-    ]
+      MatTableModule,
+      MatDialogModule,
+      DialogComponent
+    ],
+
 })
 export class UsersComponent implements OnInit{
+
     users: User[]=[];
     roles: UserRole[]=[];
+    createUser = new User();
     displayedColumns: string[] = ['index', 'name', 'role', 'actions'];
     dataSource!: MatTableDataSource<User>;
 
 
 
   
-    constructor(private usersService: UsersService){
+    constructor(private usersService: UsersService,private dialog: MatDialog){
 
     }
 
     ngOnInit(): void {
+
         this.getAll();
         this.getAllRole();
     }
@@ -44,7 +54,6 @@ export class UsersComponent implements OnInit{
           (res: User[]) => {
             this.users = res;
             this.dataSource = new MatTableDataSource(res)
-
           },
           (error) => {
             console.error('Hiba történt a Userek lekérésekor:', error);
@@ -66,6 +75,17 @@ export class UsersComponent implements OnInit{
         const role = this.roles.find(r => r.id === roleId);
         return role ? role.role_name : '';
       }
+
+    
+      //A modal-ért lesz felelős, ez nyitja meg majd a dialogot(modalt)
+      openDialog() {
+        const dialogConfig = new MatDialogConfig();
+        
+        dialogConfig.disableClose = true; //ha kikattintunk akkor nem fog bezárni
+        dialogConfig.autoFocus = true; //Az fromfield-re megy a fókusz
+
+        this.dialog.open(DialogComponent, dialogConfig);
+        }
 
       editUser(user: User) {
         throw new Error('Method not implemented.');

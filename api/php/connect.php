@@ -1,9 +1,11 @@
 <?php
 
-$servername = "172.21.0.2";
+$servername = "172.18.0.2";
 $database = "db";
 $username = "root";
 $password = "root";
+
+
 
 // Connection
 $conn = mysqli_connect($servername, $username, $password, $database);
