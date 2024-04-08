@@ -21,6 +21,8 @@ export class UsersService {
   private url = environment.apiUrl + 'User/' + 'Uread';
   private urlRole = environment.apiUrl + 'User/' + 'URread';
   private urlCreateUser = environment.apiUrl + 'User/' +'Ucreate';
+  private urlEditUser = environment.apiUrl + 'User/' +'Uupdate';
+
   
   users: User[] = [];
   roles: UserRole[] = [];
@@ -52,6 +54,24 @@ export class UsersService {
       map((res: any) => {
         this.users.push(res);
         return res['users'];
+      })
+    )
+  }
+
+  update(u: User): Observable<User[]> {
+
+    return this.http.put(this.urlEditUser, u).pipe(
+      map((res) => {
+        this.getAllUser()
+        const modifiedUser = this.users.find(user => user['id'] === u['id']);
+
+        if(modifiedUser) {
+          modifiedUser.name = u.name;
+          modifiedUser.password = u.password;
+          modifiedUser.type_id = u.type_id;
+        }
+
+        return this.users;
       })
     )
   }

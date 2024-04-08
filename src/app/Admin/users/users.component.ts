@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatDialog, MatDialogModule,MatDialogConfig} from "@angular/material/dialog";
-import { DialogComponent } from './dialog/dialog.component';
+import { CreateComponent } from './create/create.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { EditComponent } from './edit/edit.component';
 
@@ -26,7 +26,7 @@ import { EditComponent } from './edit/edit.component';
       MatIcon,
       MatTableModule,
       MatDialogModule,
-      DialogComponent,
+      CreateComponent,
       HttpClientModule
     ],
 
@@ -92,26 +92,36 @@ export class UsersComponent implements OnInit{
         )
       }
 
+      update(){
+        this.usersService.update(this.editUserData).subscribe(
+          (res) => {
+            this.users = res;
+            this.editUserData.name = '';
+            this.editUserData.password = '';
+            this.editUserData.type_id = 0;
+            this.getAll();
+          }
+        )
+      }
+
     
       //A modal-ért lesz felelős, ez nyitja meg majd a dialogot(modalt)
-      openDialog() {
+      createUserDialog() {
         const dialogConfig = new MatDialogConfig();
         
         dialogConfig.disableClose = true; //ha kikattintunk akkor nem fog bezárni
         dialogConfig.autoFocus = true; //Az fromfield-re megy a fókusz
 
-        const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
+        const dialogRef = this.dialog.open(CreateComponent, dialogConfig);
 
         dialogRef.afterClosed().subscribe(result => {
-          this.createUser.name = result['username']
-          this.createUser.password = result['password']
-          this.createUser.type_id = result['type']
+          if(result){
+            this.createUser.name = result['username']
+            this.createUser.password = result['password']
+            this.createUser.type_id = result['type']
+            this.create();
 
-          console.log('The dialog was closed');
-          console.log(this.createUser);
-          this.create();
-
-         
+          }
         });
         }
 
@@ -126,13 +136,15 @@ export class UsersComponent implements OnInit{
         const dialogRef = this.dialog.open(EditComponent, dialogConfig);
 
         dialogRef.afterClosed().subscribe(result => {
-          this.editUserData.name = result['username']
-          this.editUserData.password = result['password']
-          this.editUserData.type_id = result['type']
+          if(result){
+            this.editUserData.id = result['id'];
+            this.editUserData.name = result['name']
+            this.editUserData.password = result['password']
+            this.editUserData.type_id = result['type_id']
+            this.update();
 
-          console.log('The dialog was closed');
-          console.log(this.createUser);
-         
+          }
+          
         });
         }
           

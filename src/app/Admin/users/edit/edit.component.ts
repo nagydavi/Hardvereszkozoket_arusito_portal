@@ -13,11 +13,6 @@ import { EditService } from './edit.service';
 import { Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl ,ReactiveFormsModule} from '@angular/forms';
 
-
-
-
-
-
 @Component({
   selector: 'app-edit',
   standalone: true,
@@ -38,6 +33,7 @@ import { FormBuilder, FormGroup, FormControl ,ReactiveFormsModule} from '@angula
 export class EditComponent {
 
   users: User[]=[];
+  sendUser: User = new User;
   roles: UserRole[]=[];
 
   form: FormGroup = new FormGroup({
@@ -55,7 +51,6 @@ export class EditComponent {
   ngOnInit(): void {
 
     this.getAllRole();
-    console.log(this.user);
     this.form = this.formBuilder.group({
       username: new FormControl(this.user.name), // Felhasználó nevének beállítása
       password: new FormControl(this.user.password), // Felhasználó jelszavának beállítása
@@ -76,7 +71,21 @@ export class EditComponent {
   }
 
   update() {
-    throw new Error('Method not implemented.');
+    if(this.form.get('type') && this.form.get('password')?.value != '' && this.form.get('username')?.value != ''){
+      this.sendUser.id  = this.user.id;
+      this.sendUser.name = this.form.get('username')?.value;
+      this.sendUser.password = this.form.get('password')?.value;
+      this.sendUser.type_id = this.form.get('type')?.value;
+
+      this.dialogRef.close(this.sendUser);
+    }else{
+      // Ha valamelyik mező nincs kitöltve, megjelenítünk egy értesítést az alján
+      this.snackBar.open('Minden mező kitöltése kötelező!', 'Értem', {
+        duration: 3000, // Megjelenési időtartam millisecondban (3 másodperc)
+        verticalPosition: 'bottom', // Elhelyezkedés: alul
+        horizontalPosition: 'center', // Elhelyezkedés: középen
+    });
+    }
   } 
   close() {
     this.dialogRef.close();
