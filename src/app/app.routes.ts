@@ -22,6 +22,8 @@ export const routes: Routes = [
     {path: 'admin/login', loadChildren: () => import ('./Admin/login/login.module').then(m=>m.LoginModule) },
     {path: 'admin/laptops', loadChildren: () => import ('./Admin/laptops/laptops.module').then(m=>m.LaptopsModule) },
     {path: 'admin/users', loadChildren: () => import ('./Admin/users/users.module').then(m=>m.UsersModule) },
+    {path: 'admin/ssd', loadChildren: () => import ('./Admin/ssd/ssd.module').then(m=>m.SsdModule) },
+
 ];
 
 @NgModule({

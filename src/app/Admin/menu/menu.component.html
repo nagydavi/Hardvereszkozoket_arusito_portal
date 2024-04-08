@@ -10,6 +10,10 @@
                     <mat-icon>computer</mat-icon>
                     <span>Számítógépek</span>
                 </a>
+                <a mat-list-item routerLink="/admin/ssd" (click)="close(sidenav)">
+                    <mat-icon>memory</mat-icon>
+                    <span>SSD</span>
+                </a>
             </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -24,6 +28,8 @@
                 <ul fxLayout fxLayoutGap="10px" class="menu-items">
                     <li><a routerLink = "/admin/users">Felhasználók</a></li>
                     <li><a routerLink="/admin/laptops">Számítógépek</a></li>
+                    <li><a routerLink="/admin/ssd">SSD</a></li>
+
                 </ul>
             </div>
         </mat-toolbar>
