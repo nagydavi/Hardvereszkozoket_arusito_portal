@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>SSD létrehozás</h2>
+
+<mat-dialog-content [formGroup]="form">
+    <mat-form-field>
+        <input matInput type="text" placeholder="Név" formControlName="username">
+    </mat-form-field>
+      <br>
+    <mat-form-field>
+        <input matInput type="password" placeholder="Jelszó" formControlName="password">
+    </mat-form-field>
+      <br> 
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="buttons"(click)="close()">Mégse</button>
+    <button class="buttons"(click)="save()">Mentés</button>
+</mat-dialog-actions>

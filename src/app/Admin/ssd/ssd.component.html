@@ -1,2 +1,38 @@
 <app-menu></app-menu>
-<p>ssd works!</p>
+<div>
+    <button mat-raised-button class="create-button" (click)="createSSDDialog()">Létrehozás</button>
+</div>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="index">
+    <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+    <mat-cell *matCellDef="let ssd; let i = index">{{ i + 1 }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Név</mat-header-cell>
+    <mat-cell *matCellDef="let ssd">{{ ssd.name }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="sku">
+    <mat-header-cell *matHeaderCellDef>Sku</mat-header-cell>
+    <mat-cell *matCellDef="let ssd">{{ ssd.sku }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="warranty">
+    <mat-header-cell *matHeaderCellDef>Warranty</mat-header-cell>
+    <mat-cell *matCellDef="let ssd">{{ ssd.warranty }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="discount">
+    <mat-header-cell *matHeaderCellDef>Discount</mat-header-cell>
+    <mat-cell *matCellDef="let ssd">{{ ssd.discount }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>Műveletek</mat-header-cell>
+    <mat-cell *matCellDef="let ssd">
+      <button mat-icon-button (click)="editSsd(ssd)" class="edit">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

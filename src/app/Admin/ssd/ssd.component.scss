@@ -1,0 +1,26 @@
+.mat-icon{
+    font-size: medium;
+    vertical-align: middle;
+}
+
+.edit{
+    background-color: transparent; /* Háttérszín eltávolítása */
+    border: none; /* Keret eltávolítása */
+}
+
+.mat-table {
+    width: 50%;
+    margin: auto;
+  }
+
+.create-button{
+    background-color: #3f51b5; /* kék háttér */
+    color: #FFFFFF; /* fehér szöveg */
+    border-radius: 24px; /* lekerekített sarkok */
+    padding: 12px 24px; /* belső térköz */
+    border: none; /* nincs keret */
+    font-size: 16px; /* betűméret */   
+    margin: 16px 16px;
+      
+}
+

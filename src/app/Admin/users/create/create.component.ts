@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-dialog',
+  selector: 'app-create',
   standalone: true,
   imports: [
     MatFormField,
