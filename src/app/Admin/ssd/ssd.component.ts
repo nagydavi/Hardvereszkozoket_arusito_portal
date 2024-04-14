@@ -27,7 +27,6 @@ import { EditComponent } from './edit/edit.component';
 })
 export class SsdComponent {
 
-
     ssd: SSD[]=[];
     createSSD = new SSD();
     editSSDData = new SSD();
@@ -143,7 +142,5 @@ export class SsdComponent {
             }
           )
         }
-
-  
-
+   
 }

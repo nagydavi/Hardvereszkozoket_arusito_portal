@@ -16,6 +16,8 @@ import { MatList, MatListModule } from '@angular/material/list';
 import { environment } from '../../../../environments/environment';
 import { EditService } from './edit.service';
 import { SSD } from '../../../Models/ssd';
+import { Image } from '../../../Models/image';
+
 @Component({
   selector: 'app-edit',
   standalone: true,
@@ -38,6 +40,12 @@ import { SSD } from '../../../Models/ssd';
   styleUrl: './edit.component.scss'
 })
 export class EditComponent {
+
+  image: Image[]=[];
+  createNewImage = new Image();
+  fileNames: string[] = [];
+
+
   //Képfeltöltés-hez kellenek
   options?: {content: FormData;};
   file: string = '';
@@ -79,9 +87,12 @@ export class EditComponent {
   onFileSelect(event:any) {
     if(event.target.files){
       for(let i = 0; i < (event.target.files.length);i++){
-        this.file = event.target.files[i]
+        this.file = event.target.files[i];
         this.myFiles.push(event.target.files[i]);
-
+        const fileName = event.target.files[i].name;
+      
+        // Fájlnevek hozzáadása a fájlnevek tömbjéhez
+        this.fileNames.push(fileName);
       }
     }
       
@@ -90,6 +101,7 @@ export class EditComponent {
     const formData = new FormData();
     for(let i = 0; i < this.myFiles.length;i++){
       formData.append('fileUpload[]',this.myFiles[i]);
+
     }
 
     this.http.post<any>(environment.apiUrl + 'Upload/upload',formData).subscribe(
@@ -105,6 +117,15 @@ export class EditComponent {
         console.error(error);
       }
     )
+    for(let i = 0; i < this.fileNames.length;i++){
+      this.createNewImage.pic_name = this.fileNames[i];
+      this.createNewImage.product_id = this.ssd.id;
+      this.createNewImage.type = 'ssd'
+      this.createImage();
+      
+    }
+    this.fileNames = [];
+
   }
   
   
@@ -133,5 +154,30 @@ export class EditComponent {
   close() {
     this.dialogRef.close();
   }
+
+
+  
+   //Image
+  
+   createImage() {
+    this.editService.createImage(this.createNewImage).subscribe(
+      (res: Image[]) => {
+        this.image = res;
+        this.createNewImage.type = '';
+        this.createNewImage.product_id = 0;
+        this.createNewImage.pic_name = '';
+      }
+    )
+  }
+
+
+
+  deleteImage(image: Image) {
+    this.editService.deleteImage(image).subscribe(
+        (res: Image[]) => {
+          
+        }
+      )
+    }
 
 }
