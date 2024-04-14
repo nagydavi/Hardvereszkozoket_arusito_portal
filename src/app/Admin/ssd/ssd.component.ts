@@ -8,6 +8,7 @@ import { CreateComponent } from './create/create.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SsdService } from './ssd.service';
 import { SSD } from '../../Models/ssd';
+import { EditComponent } from './edit/edit.component';
 
 @Component({
     selector: 'app-ssd',
@@ -28,7 +29,9 @@ export class SsdComponent {
 
 
     ssd: SSD[]=[];
-    displayedColumns: string[] = ['index', 'name', 'sku','warranty','discount', 'actions'];
+    createSSD = new SSD();
+    editSSDData = new SSD();
+    displayedColumns: string[] = ['index', 'name', 'sku','warranty','storage','discount', 'actions'];
     dataSource!: MatTableDataSource<SSD>;
 
 
@@ -57,6 +60,34 @@ export class SsdComponent {
         );
       }
 
+    create() {
+        this.ssdService.create(this.createSSD).subscribe(
+          (res: SSD[]) => {
+            this.ssd = res;
+            this.createSSD.name = '';
+            this.createSSD.sku = '';
+            this.createSSD.warranty = '';
+            this.createSSD.discount = false;
+            this.createSSD.storage = 0;
+
+            this.getAll();
+          }
+        )
+      }
+
+    update(){
+        this.ssdService.update(this.editSSDData).subscribe(
+          (res) => {
+            this.ssd = res;
+            this.editSSDData.name = '';
+            this.editSSDData.sku = '';
+            this.editSSDData.warranty = '';
+            this.editSSDData.discount = false;
+            this.editSSDData.storage = 0;
+          }
+        )
+      }
+
     createSSDDialog() {
         const dialogConfig = new MatDialogConfig();
         
@@ -65,19 +96,54 @@ export class SsdComponent {
 
         const dialogRef = this.dialog.open(CreateComponent, dialogConfig);
 
-        //dialogRef.afterClosed().subscribe(result => {
-                //if(result){
-                    //this.createUser.name = result['username']
-                    //this.createUser.password = result['password']
-                    //this.createUser.type_id = result['type']
-                    //this.create();
+        dialogRef.afterClosed().subscribe(result => {
+                if(result){
+                    this.createSSD.name = result['name'];
+                    this.createSSD.sku = result['sku'];
+                    this.createSSD.warranty = result['warranty'];
+                    this.createSSD.discount = result['discount'];
+                    this.createSSD.storage = result['storage'];
+                    this.create();
 
-                //}
-            //});
+                    
+
+                }
+            });
         }
 
-        editSsd(_t38: any) {
-            throw new Error('Method not implemented.');
+    editSsd(ssd: SSD) {
+        const dialogConfig = new MatDialogConfig();
+        
+        dialogConfig.disableClose = true; //ha kikattintunk akkor nem fog bezárni
+        dialogConfig.autoFocus = true; //Az fromfield-re megy a fókusz
+        dialogConfig.data = ssd; // Felhasználó átadása a dialógusnak
+
+
+        const dialogRef = this.dialog.open(EditComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result => {
+          if(result){
+                this.editSSDData.id = result['id'];
+                this.editSSDData.name = result['name'];
+                this.editSSDData.sku = result['sku'];
+                this.editSSDData.warranty = result['warranty'];
+                this.editSSDData.discount = result['discount'];
+                this.editSSDData.storage = result['storage'];
+                this.update();
+                this.getAll();
+          }
+          
+        });
+    }
+
+    deleteSsd(ssd: SSD) {
+        this.ssdService.delete(ssd).subscribe(
+            (res: SSD[]) => {
+              this.getAll();
             }
+          )
+        }
+
+  
 
 }

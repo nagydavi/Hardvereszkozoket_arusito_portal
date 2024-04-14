@@ -17,18 +17,25 @@
     <mat-cell *matCellDef="let ssd">{{ ssd.sku }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="warranty">
-    <mat-header-cell *matHeaderCellDef>Warranty</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Jótállás</mat-header-cell>
     <mat-cell *matCellDef="let ssd">{{ ssd.warranty }}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="storage">
+    <mat-header-cell *matHeaderCellDef>Tárhely</mat-header-cell>
+    <mat-cell *matCellDef="let ssd">{{ ssd.storage }}</mat-cell>
+  </ng-container>
   <ng-container matColumnDef="discount">
-    <mat-header-cell *matHeaderCellDef>Discount</mat-header-cell>
-    <mat-cell *matCellDef="let ssd">{{ ssd.discount }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef>Akció</mat-header-cell>
+    <mat-cell *matCellDef="let ssd">{{ ssd.discount === '1' ? 'igen' : 'nem' }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef>Műveletek</mat-header-cell>
     <mat-cell *matCellDef="let ssd">
       <button mat-icon-button (click)="editSsd(ssd)" class="edit">
         <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteSsd(ssd)" class="delete">
+        <mat-icon>delete</mat-icon>
       </button>
     </mat-cell>
   </ng-container>

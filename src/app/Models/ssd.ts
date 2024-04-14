@@ -3,6 +3,6 @@ export class SSD {
     name: string = '';
     sku: string = '';
     warranty: string = '';
-    picture?: Uint8Array; // Ez az oszlop típusa BLOB
     discount: boolean = false;
+    storage: number = 0;
 }

@@ -1,17 +1,34 @@
+<div class="dialog">
 <h2 mat-dialog-title>SSD létrehozás</h2>
 
 <mat-dialog-content [formGroup]="form">
     <mat-form-field>
-        <input matInput type="text" placeholder="Név" formControlName="username">
+        <input matInput type="text" placeholder="Név" formControlName="name">
     </mat-form-field>
       <br>
     <mat-form-field>
-        <input matInput type="password" placeholder="Jelszó" formControlName="password">
+        <input matInput type="text" placeholder="Sku" formControlName="sku">
     </mat-form-field>
       <br> 
+      <mat-form-field>
+        <input matInput type="text" placeholder="Jótállás" formControlName="warranty">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput type="number" placeholder="Tárhely" formControlName="storage">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-select matInput placeholder="Akció" formControlName="discount">
+            <mat-option value="1">Igen</mat-option>
+            <mat-option value="0">Nem</mat-option>
+          </mat-select>
+    </mat-form-field>
+    <br>
 </mat-dialog-content>
 
 <mat-dialog-actions>
     <button class="buttons"(click)="close()">Mégse</button>
     <button class="buttons"(click)="save()">Mentés</button>
 </mat-dialog-actions>
+</div>

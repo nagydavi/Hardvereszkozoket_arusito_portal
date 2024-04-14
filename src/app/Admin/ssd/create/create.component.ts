@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'; 
 import { MatInputModule } from '@angular/material/input';
 import { MatOption } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { User } from '../../../Models/user';
-import { UserRole } from '../../../Models/userRole';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CreateService } from './create.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+
+
 @Component({
   selector: 'app-create',
   standalone: true,
@@ -22,26 +27,41 @@ import { HttpClientModule } from '@angular/common/http';
     MatOption,
     MatSelectModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbar,
+    MatProgressBarModule,
+    MatCardModule,
+    MatListModule,
+    
   ],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
-export class CreateComponent {
+export class CreateComponent implements OnInit{
+
 
   form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    name: new FormControl(''),
+    sku: new FormControl(''),
+    warranty: new FormControl(''),
+    discount: new FormControl(''), 
+    storage: new FormControl('') 
+
     
   });
+  
 
 
-  constructor(private dialogRef: MatDialogRef<CreateComponent>,private snackBar: MatSnackBar){
+  constructor(private createService: CreateService,private dialogRef: MatDialogRef<CreateComponent>,private snackBar: MatSnackBar, private http:HttpClient){
 
   }
+  ngOnInit(): void {
 
+  }
+  
+  //wip
   save() {
-    if(this.form.get('username') && this.form.get('password')?.value != '' ){
+    if(this.form.get('name')?.value != '' && this.form.get('sku')?.value != '' && this.form.get('warranty')?.value != '' && this.form.get('discount')?.value != ''&& this.form.get('storage')?.value != ''){
       this.dialogRef.close(this.form.value);
     }else{
       // Ha valamelyik mező nincs kitöltve, megjelenítünk egy értesítést az alján

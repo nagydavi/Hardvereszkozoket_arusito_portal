@@ -142,6 +142,7 @@ export class UsersComponent implements OnInit{
             this.editUserData.password = result['password']
             this.editUserData.type_id = result['type_id']
             this.update();
+            this.getAll();
 
           }
           

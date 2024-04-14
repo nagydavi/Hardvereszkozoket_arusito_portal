@@ -19,7 +19,7 @@ while($line = mysqli_fetch_assoc($execute)) {
   $ssd[$index]['name'] = $line['name'];
   $ssd[$index]['sku'] = $line['sku'];
   $ssd[$index]['warranty'] = $line['warranty'];
-  $ssd[$index]['picture'] = $line['picture'];
+  $ssd[$index]['storage'] = $line['storage'];
   $ssd[$index]['discount'] = $line['discount'];
 
 
