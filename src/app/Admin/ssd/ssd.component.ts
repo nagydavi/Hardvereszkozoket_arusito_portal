@@ -8,6 +8,7 @@ import { CreateComponent } from './create/create.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SsdService } from './ssd.service';
 import { SSD } from '../../Models/ssd';
+import { Image } from '../../Models/image';
 import { EditComponent } from './edit/edit.component';
 
 @Component({
@@ -33,6 +34,9 @@ export class SsdComponent {
     displayedColumns: string[] = ['index', 'name', 'sku','warranty','storage','discount', 'actions'];
     dataSource!: MatTableDataSource<SSD>;
 
+    deleteImageProp: Image[] = [];
+    image: Image[] = [];
+
 
 
 
@@ -45,6 +49,7 @@ export class SsdComponent {
 
     ngOnInit(): void {
         this.getAll();
+        this.getAllImageDB();
     }
 
     getAll() {
@@ -130,6 +135,7 @@ export class SsdComponent {
                 this.editSSDData.storage = result['storage'];
                 this.update();
                 this.getAll();
+                this.getAllImageDB();
           }
           
         });
@@ -140,7 +146,41 @@ export class SsdComponent {
             (res: SSD[]) => {
               this.getAll();
             }
-          )
-        }
+          );
+          this.deleteImageProp.forEach(element => {
+            if(element.product_id === ssd.id && element.type === 'ssd'){
+              this.deleteAsset(element.pic_name);
+              this.deleteImageDB(element);
+            }
+            
+          });
+      }
+
+    //ImageDB
+    getAllImageDB(){
+      this.ssdService.getAllImageDB().subscribe(
+        (response: Image[]) =>{
+          this.deleteImageProp = response;
+        },
+        (error) => {
+          console.error('Hiba történt a Képek adatok lekérésekor:', error);
+      }
+      );
+    }
+
+    deleteImageDB(image: Image) {
+      this.ssdService.deleteImageDB(image).subscribe(
+          (res: Image[]) => {
+          
+          }
+        )
+      }
    
+    deleteAsset(image: string){
+      if (image.trim() === '') {
+        alert('Add meg a törlendő fájl nevét!');
+        return;
+      }
+      this.ssdService.deleteFile(image).subscribe();
+    } 
 }

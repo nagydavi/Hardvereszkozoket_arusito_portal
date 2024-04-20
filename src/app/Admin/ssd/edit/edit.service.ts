@@ -38,7 +38,7 @@ export class EditService {
 
 
   //Image
-  getAllImage(): Observable<Image[]>{
+  getAllImageDB(): Observable<Image[]>{
     return this.http.get<ApiResponseImage>(this.readImageUrl).pipe(
       map((res) => {
         this.image = res['image'];
@@ -52,12 +52,13 @@ export class EditService {
     return this.http.post<Image>(this.createImageUrl, image).pipe(
       map((res: any) => {
         this.image.push(res);
-        return res['image'];
+        return this.image;
       })
     )
   }
 
-  deleteImage(i: Image): Observable<Image[]> {
+  deleteImageDB(i: Image): Observable<Image[]> {
+    console.log(i);
     const params = new HttpParams().set('id', i.id!.toString());
     return this.http.delete(this.deleteImageUrl, {params: params}).pipe(
       map((res) => {

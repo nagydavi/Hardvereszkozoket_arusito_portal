@@ -11,6 +11,9 @@ import { Image } from '../../Models/image';
 interface ApiResponse {
   ssd: SSD[]; 
 }
+interface ApiResponseImage {
+  image: Image[]; 
+}
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +28,14 @@ export class SsdService {
   private editSsdUrl = environment.apiUrl + 'SSD/' + 'Supdate';
   private deleteSsdUrl = environment.apiUrl + 'SSD/' + 'Sdelete';
 
+  //imageDb
+  private deleteImageUrl = environment.apiUrl + 'Image/' + 'Idelete';
+  private readImageUrl = environment.apiUrl + 'Image/' + 'Iread';
+  //assest
+  private deleteAssetsUrl = environment.apiUrl + 'Upload/' + 'delete';
 
+
+  image: Image[] = [];
   ssd: SSD[] = [];
 
   constructor(private http:HttpClient) { }
@@ -46,7 +56,7 @@ export class SsdService {
     return this.http.post<SSD>(this.createSsdUrl, ssd).pipe(
       map((res: any) => {
         this.ssd.push(res);
-        return res['ssd'];
+        return this.ssd;
       })
     )
   }
@@ -82,5 +92,33 @@ export class SsdService {
         return this.ssd = filter;
       })
     )
+  }
+  //ImageDB
+
+  getAllImageDB(): Observable<Image[]>{
+    return this.http.get<ApiResponseImage>(this.readImageUrl).pipe(
+      map((res) => {
+        this.image = res['image'];
+        return this.image
+      })
+    )
+  }
+
+  deleteImageDB(i: Image): Observable<Image[]> {
+    console.log(i);
+    const params = new HttpParams().set('id', i.id!.toString());
+    return this.http.delete(this.deleteImageUrl, {params: params}).pipe(
+      map((res) => {
+        const filter = this.image.filter((image) => {
+          return image['id'] !== i.id;
+        })
+
+        return this.image = filter;
+      })
+    )
+  }
+  //Assest
+  deleteFile(filename: string): Observable<any> {
+    return this.http.post<any>(this.deleteAssetsUrl, { filename });
   }
 }

@@ -25,7 +25,7 @@ while($line = mysqli_fetch_assoc($execute)) {
   $index++;
 }
 
-echo json_encode(['images' => $images]);
+echo json_encode(['image' => $images]);
 
 
 ?>

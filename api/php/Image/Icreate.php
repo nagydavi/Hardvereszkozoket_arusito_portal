@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'product_id' => $product_id,
             'pic_name' => $pic_name
         );
-        echo json_encode(array('createdUser' => $createdPic));
+        echo json_encode(array('image' => $createdPic));
     } else {
 
         // Ha hiba történt a beszúrás során, beállítjuk a megfelelő hibakódot

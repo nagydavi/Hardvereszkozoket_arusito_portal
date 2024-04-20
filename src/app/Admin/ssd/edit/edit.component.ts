@@ -45,8 +45,8 @@ export class EditComponent {
 
   assetUrl = environment.apiUrl + 'assets/';
 
-
-  image: Image[]=[];
+  deleteImageProp: Image[] = [];
+  image: Image[] = [];
   createNewImage = new Image();
   fileNames: string[] = [];
   images: string[] = [];
@@ -79,7 +79,7 @@ export class EditComponent {
 }
   ngOnInit(): void {
     this.getAllImages();
-
+    this.getAllImageDB();
     this.form = this.formBuilder.group({
       name: new FormControl(this.ssd.name), 
       sku: new FormControl(this.ssd.sku), 
@@ -113,7 +113,6 @@ export class EditComponent {
 
     this.http.post<any>(environment.apiUrl + 'Upload/upload',formData).subscribe(
       (response) => {
-        console.log(response);
         this.snackBar.open('Kép/Képek sikeresen feltöltve!', 'Értem', {
           duration: 3000, // Megjelenési időtartam millisecondban (3 másodperc)
           verticalPosition: 'bottom', // Elhelyezkedés: alul
@@ -133,6 +132,8 @@ export class EditComponent {
     }
     this.fileNames = [];
     this.getAllImages();
+    this.getAllImageDB();
+
   }
   
   
@@ -164,29 +165,42 @@ export class EditComponent {
 
 
   
-   //Image
+   //ImageDB
   
-   createImage() {
+  getAllImageDB(){
+    this.editService.getAllImageDB().subscribe(
+      (response: Image[]) =>{
+        this.deleteImageProp = response;
+      },
+      (error) => {
+        console.error('Hiba történt a Képek adatok lekérésekor:', error);
+    }
+    );
+  }
+
+
+  createImage() {
     this.editService.createImage(this.createNewImage).subscribe(
       (res: Image[]) => {
         this.image = res;
         this.createNewImage.type = '';
         this.createNewImage.product_id = 0;
         this.createNewImage.pic_name = '';
+        this.getAllImageDB();
       }
     )
   }
 
 
 
-  deleteImage(image: Image) {
-    this.editService.deleteImage(image).subscribe(
+  deleteImageDB(image: Image) {
+    this.editService.deleteImageDB(image).subscribe(
         (res: Image[]) => {
           
         }
       )
     }
-
+  //Asset
   getAllImages(): void {
     this.editService.getAllImages().subscribe(
       images => {
@@ -199,7 +213,8 @@ export class EditComponent {
   }
 
   deleteThisImage(image: string) {
-    console.log(image.trim());
+
+  
     if (image.trim() === '') {
       alert('Add meg a törlendő fájl nevét!');
       return;
@@ -213,6 +228,15 @@ export class EditComponent {
           verticalPosition: 'bottom', // Elhelyezkedés: alul
           horizontalPosition: 'center', // Elhelyezkedés: középen
       });
+      this.deleteImageProp.forEach(element => {
+        console.log(element);
+        if (element.pic_name === image && this.ssd.id === element.product_id){
+          this.deleteImageDB(element);
+          this.getAllImageDB();
+
+        }
+      });
+
       },
       error => {
         console.error('Hiba történt a fájl törlése közben:', error);
