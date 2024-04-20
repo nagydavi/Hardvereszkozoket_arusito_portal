@@ -85,3 +85,17 @@
 .dialog .mat-dialog-actions { /* gombok */
   justify-content: space-around; /* Gombok középre rendezése */
 }
+
+
+//Kép kártya
+.image-card {
+    width: calc(100% - 20px); /* A kártya szélessége 100%, a margin levonásával */
+    margin: 10px;
+    position: relative;
+  }
+  
+  .delete-button {
+    background-color: transparent; /* Háttérszín eltávolítása */
+    border: none; /* Keret eltávolítása */ 
+    color: red;
+  }

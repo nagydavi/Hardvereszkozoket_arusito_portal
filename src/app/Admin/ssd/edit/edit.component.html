@@ -25,19 +25,21 @@
               </mat-select>
         </mat-form-field>
         <br>
-    
-    
-    
         <!--Képfeltöltés-->
         <input type="file" name="ssd" (change)="onFileSelect($event)" multiple />
         <button type="submit" (click)="upload()">Upload</button>
-      
-    
-    
         <!--Képfeltöltés vége-->
-    
+        <br>
+        <div class="image-container">
+            <mat-card *ngFor="let imageName of images" class="image-card">
+                <img [src]="assetUrl + imageName" alt="Image" width="100%"> <!-- A kép legyen teljes szélességű -->
+                <button mat-icon-button class="delete-button">
+                  <mat-icon aria-label="Delete" (click)="deleteThisImage(imageName)">delete</mat-icon>
+                </button>
+            </mat-card>
+        </div>
     </mat-dialog-content>
-    
+   
     <mat-dialog-actions>
         <button class="buttons"(click)="close()">Mégse</button>
         <button class="buttons"(click)="update()">Mentés</button>

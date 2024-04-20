@@ -17,6 +17,7 @@ import { environment } from '../../../../environments/environment';
 import { EditService } from './edit.service';
 import { SSD } from '../../../Models/ssd';
 import { Image } from '../../../Models/image';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-edit',
@@ -35,15 +36,20 @@ import { Image } from '../../../Models/image';
     MatProgressBarModule,
     MatCardModule,
     MatListModule,
+    MatIcon
   ],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss'
 })
 export class EditComponent {
 
+  assetUrl = environment.apiUrl + 'assets/';
+
+
   image: Image[]=[];
   createNewImage = new Image();
   fileNames: string[] = [];
+  images: string[] = [];
 
 
   //Képfeltöltés-hez kellenek
@@ -72,6 +78,7 @@ export class EditComponent {
 
 }
   ngOnInit(): void {
+    this.getAllImages();
 
     this.form = this.formBuilder.group({
       name: new FormControl(this.ssd.name), 
@@ -122,10 +129,10 @@ export class EditComponent {
       this.createNewImage.product_id = this.ssd.id;
       this.createNewImage.type = 'ssd'
       this.createImage();
-      
+
     }
     this.fileNames = [];
-
+    this.getAllImages();
   }
   
   
@@ -180,4 +187,37 @@ export class EditComponent {
       )
     }
 
+  getAllImages(): void {
+    this.editService.getAllImages().subscribe(
+      images => {
+        this.images = images;
+      },
+      error => {
+        console.error('Error fetching images:', error);
+      }
+    );
+  }
+
+  deleteThisImage(image: string) {
+    console.log(image.trim());
+    if (image.trim() === '') {
+      alert('Add meg a törlendő fájl nevét!');
+      return;
+    }
+    
+    this.editService.deleteFile(image).subscribe(
+      response => {
+        this.getAllImages();
+        this.snackBar.open('Kép sikeresen törölve!', 'Értem', {
+          duration: 3000, // Megjelenési időtartam millisecondban (3 másodperc)
+          verticalPosition: 'bottom', // Elhelyezkedés: alul
+          horizontalPosition: 'center', // Elhelyezkedés: középen
+      });
+      },
+      error => {
+        console.error('Hiba történt a fájl törlése közben:', error);
+        alert('Hiba történt a fájl törlése közben!');
+      }
+    );
+  }
 }

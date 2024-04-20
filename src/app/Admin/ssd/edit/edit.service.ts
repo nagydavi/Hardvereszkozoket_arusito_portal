@@ -23,6 +23,11 @@ export class EditService {
   private createImageUrl = environment.apiUrl + 'Image/' + 'Icreate';
   private deleteImageUrl = environment.apiUrl + 'Image/' + 'Idelete';
 
+  //assest
+  private getAssetsUrl = environment.apiUrl + 'Upload/' + 'read';
+  private deleteAssetsUrl = environment.apiUrl + 'Upload/' + 'delete';
+
+
 
   image: Image[] = [];
 
@@ -66,6 +71,14 @@ export class EditService {
   }
   //Vége
 
+  //Assest
+  getAllImages(): Observable<string[]> {
+    return this.http.get<string[]>(this.getAssetsUrl);
+  }
+  deleteFile(filename: string): Observable<any> {
+    return this.http.post<any>(this.deleteAssetsUrl, { filename });
+  }
+  
 
 
 }

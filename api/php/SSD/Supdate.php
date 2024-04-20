@@ -8,7 +8,6 @@ $getData = file_get_contents('php://input');
 // Extract JSON data
 $data = json_decode($getData);
 
-var_dump($data);
 if (!isset($data->name) || !isset($data->sku) || !isset($data->warranty) || !isset($data->discount) || !isset($data->storage) ) {
     http_response_code(400);
     echo json_encode($data);
