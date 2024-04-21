@@ -119,7 +119,6 @@ if (!empty($missingData)) {
     if ($result) {
         // Sikeres beszúrás esetén visszaküldjük az újonnan létrehozott felhasználó adatait
         $laptop = array(
-            'id' => $id,
             'name' => $name,
             'resolution' => $resolution,
             'screen' => $screen,
