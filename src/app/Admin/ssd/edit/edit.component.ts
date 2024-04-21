@@ -232,7 +232,6 @@ export class EditComponent {
     
     this.editService.deleteFile(image).subscribe(
       response => {
-        this.getAllImages();
         this.snackBar.open('Kép sikeresen törölve!', 'Értem', {
           duration: 3000, // Megjelenési időtartam millisecondban (3 másodperc)
           verticalPosition: 'bottom', // Elhelyezkedés: alul
@@ -246,7 +245,6 @@ export class EditComponent {
         }
           this.deleteImageDB(element);
           this.getAllImageDB();
-          this.getAllImages();
 
         }
       });

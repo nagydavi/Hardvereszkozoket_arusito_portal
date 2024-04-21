@@ -299,7 +299,6 @@ deleteImageDB(image: Image) {
       
       this.editService.deleteFile(image).subscribe(
         response => {
-          this.getAllImages();
           this.snackBar.open('Kép sikeresen törölve!', 'Értem', {
             duration: 3000, // Megjelenési időtartam millisecondban (3 másodperc)
             verticalPosition: 'bottom', // Elhelyezkedés: alul
@@ -314,7 +313,6 @@ deleteImageDB(image: Image) {
             }
             this.deleteImageDB(element);
             this.getAllImageDB();
-            this.getAllImages();
   
           }
         });

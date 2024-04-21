@@ -23,6 +23,9 @@ export const routes: Routes = [
     {path: 'admin/laptops', loadChildren: () => import ('./Admin/laptops/laptops.module').then(m=>m.LaptopsModule) },
     {path: 'admin/users', loadChildren: () => import ('./Admin/users/users.module').then(m=>m.UsersModule) },
     {path: 'admin/ssd', loadChildren: () => import ('./Admin/ssd/ssd.module').then(m=>m.SsdModule) },
+    {path: 'admin/ram', loadChildren: () => import ('./Admin/ram/ram.module').then(m=>m.RamModule) },
+    {path: 'admin/pendrive', loadChildren: () => import ('./Admin/pendrive/pendrive.module').then(m=>m.PendriveModule) },
+
 
 ];
 

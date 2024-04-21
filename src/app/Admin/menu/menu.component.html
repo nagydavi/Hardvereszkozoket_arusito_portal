@@ -14,6 +14,14 @@
                     <mat-icon>memory</mat-icon>
                     <span>SSD</span>
                 </a>
+                <a mat-list-item routerLink="/admin/ram" (click)="close(sidenav)">
+                    <mat-icon>memory</mat-icon>
+                    <span>RAM</span>
+                </a>
+                <a mat-list-item routerLink="/admin/pendrive" (click)="close(sidenav)">
+                    <mat-icon>memory</mat-icon>
+                    <span>Pendrive</span>
+                </a>
             </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -29,7 +37,8 @@
                     <li><a routerLink = "/admin/users">Felhasználók</a></li>
                     <li><a routerLink="/admin/laptops">Laptopok</a></li>
                     <li><a routerLink="/admin/ssd">SSD</a></li>
-
+                    <li><a routerLink="/admin/ram">RAM</a></li>
+                    <li><a routerLink="/admin/pendrive">Pendrive</a></li>
                 </ul>
             </div>
         </mat-toolbar>
