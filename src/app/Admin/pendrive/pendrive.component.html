@@ -1,1 +1,49 @@
-<p>pendrive works!</p>
+<app-menu></app-menu>
+<div>
+    <button mat-raised-button class="create-button" (click)="createPendriveDialog()">Létrehozás</button>
+</div>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="index">
+    <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+    <mat-cell *matCellDef="let pendrive; let i = index">{{ i + 1 }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Név</mat-header-cell>
+    <mat-cell *matCellDef="let pendrive">{{ pendrive.name }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="sku">
+    <mat-header-cell *matHeaderCellDef>Sku</mat-header-cell>
+    <mat-cell *matCellDef="let pendrive">{{ pendrive.sku }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="warranty">
+    <mat-header-cell *matHeaderCellDef>Jótállás</mat-header-cell>
+    <mat-cell *matCellDef="let pendrive">{{ pendrive.warranty }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="storage">
+    <mat-header-cell *matHeaderCellDef>Tárhely</mat-header-cell>
+    <mat-cell *matCellDef="let pendrive">{{ pendrive.storage }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="writespeed">
+    <mat-header-cell *matHeaderCellDef>Írássebesség</mat-header-cell>
+    <mat-cell *matCellDef="let pendrive">{{ pendrive.writespeed }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="discount">
+    <mat-header-cell *matHeaderCellDef>Akció</mat-header-cell>
+    <mat-cell *matCellDef="let pendrive">{{ pendrive.discount === '1' ? 'igen' : 'nem' }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>Műveletek</mat-header-cell>
+    <mat-cell *matCellDef="let pendrive">
+      <button mat-icon-button (click)="editPendrive(pendrive)" class="edit">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deletePendrive(pendrive)" class="delete">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

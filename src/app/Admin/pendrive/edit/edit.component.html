@@ -1,0 +1,51 @@
+<div class="dialog">
+    <h2 mat-dialog-title>Pendrive szerkesztés</h2>
+    
+    <mat-dialog-content [formGroup]="form">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Név" formControlName="name">
+        </mat-form-field>
+          <br>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Sku" formControlName="sku">
+        </mat-form-field>
+          <br> 
+          <mat-form-field>
+            <input matInput type="text" placeholder="Jótállás" formControlName="warranty">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="number" placeholder="Tárhely" formControlName="storage">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Írássebesség" formControlName="writespeed">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-select matInput placeholder="Akció" formControlName="discount">
+                <mat-option value="1">Igen</mat-option>
+                <mat-option value="0">Nem</mat-option>
+              </mat-select>
+        </mat-form-field>
+        <br>
+        <!--Képfeltöltés-->
+        <input type="file" name="pendrive" (change)="onFileSelect($event)" multiple />
+        <button type="submit" (click)="upload()">Upload</button>
+        <!--Képfeltöltés vége-->
+        <br>
+        <div class="image-container">
+            <mat-card *ngFor="let imageName of images" class="image-card">
+                <img [src]="assetUrl + imageName" alt="Image" width="100%"> <!-- A kép legyen teljes szélességű -->
+                <button mat-icon-button class="delete-button">
+                  <mat-icon aria-label="Delete" (click)="deleteThisImage(imageName)">delete</mat-icon>
+                </button>
+            </mat-card>
+        </div>
+    </mat-dialog-content>
+   
+    <mat-dialog-actions>
+        <button class="buttons"(click)="close()">Mégse</button>
+        <button class="buttons"(click)="update()">Mentés</button>
+    </mat-dialog-actions>
+</div>
