@@ -58,7 +58,6 @@ export class EditService {
   }
 
   deleteImageDB(i: Image): Observable<Image[]> {
-    console.log(i);
     const params = new HttpParams().set('id', i.id!.toString());
     return this.http.delete(this.deleteImageUrl, {params: params}).pipe(
       map((res) => {

@@ -46,6 +46,7 @@ export class EditComponent {
   assetUrl = environment.apiUrl + 'assets/';
 
   deleteImageProp: Image[] = [];
+  imageDB: Image[] = [];
   image: Image[] = [];
   createNewImage = new Image();
   fileNames: string[] = [];
@@ -59,12 +60,12 @@ export class EditComponent {
   //Képfeltöltés vége
 
   ssdProp: SSD[]=[];
-  sendSSD: SSD = new SSD;
+  sendSSD: SSD = new SSD();
 
 
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
-    sku: new FormControl(''),
+    resolution: new FormControl(''),
     warranty: new FormControl(''),
     discount: new FormControl(''),
     storage: new FormControl('') 
@@ -171,6 +172,7 @@ export class EditComponent {
     this.editService.getAllImageDB().subscribe(
       (response: Image[]) =>{
         this.deleteImageProp = response;
+        this.imageDB = response;
       },
       (error) => {
         console.error('Hiba történt a Képek adatok lekérésekor:', error);
@@ -202,9 +204,17 @@ export class EditComponent {
     }
   //Asset
   getAllImages(): void {
+    this.getAllImageDB();
     this.editService.getAllImages().subscribe(
       images => {
-        this.images = images;
+        images.forEach((im: string)=>
+          {
+            this.imageDB.forEach((i: Image)=>{
+              if(i.type === 'ssd' && i.pic_name === im && this.ssd.id === i.product_id){
+                this.images.push(im);
+              }
+            })
+          });
       },
       error => {
         console.error('Error fetching images:', error);
@@ -229,10 +239,14 @@ export class EditComponent {
           horizontalPosition: 'center', // Elhelyezkedés: középen
       });
       this.deleteImageProp.forEach(element => {
-        console.log(element);
         if (element.pic_name === image && this.ssd.id === element.product_id){
+        let index = this.images.indexOf(element.pic_name);
+        if (index !== -1) {
+          this.images.splice(index, 1);
+        }
           this.deleteImageDB(element);
           this.getAllImageDB();
+          this.getAllImages();
 
         }
       });

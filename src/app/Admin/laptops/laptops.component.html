@@ -1,3 +1,45 @@
 <app-menu></app-menu>
+<div>
+    <button mat-raised-button class="create-button" (click)="createLaptopDialog()">Létrehozás</button>
+</div>
 
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="index">
+    <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+    <mat-cell *matCellDef="let laptop; let i = index">{{ i + 1 }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Név</mat-header-cell>
+    <mat-cell *matCellDef="let laptop">{{ laptop.name }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="processor">
+    <mat-header-cell *matHeaderCellDef>Processzor</mat-header-cell>
+    <mat-cell *matCellDef="let laptop">{{ laptop.processor }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="op">
+    <mat-header-cell *matHeaderCellDef>Oprendszer</mat-header-cell>
+    <mat-cell *matCellDef="let laptop">{{ getOpName(laptop.op_system_id) }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="type">
+    <mat-header-cell *matHeaderCellDef>Típus</mat-header-cell>
+    <mat-cell *matCellDef="let laptop">{{ getTypeName(laptop.laptop_type_id) }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="discount">
+    <mat-header-cell *matHeaderCellDef>Akció</mat-header-cell>
+    <mat-cell *matCellDef="let laptop">{{ laptop.discount === '1' ? 'igen' : 'nem' }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>Műveletek</mat-header-cell>
+    <mat-cell *matCellDef="let laptop">
+      <button mat-icon-button (click)="editLaptop(laptop)" class="edit">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteLaptop(laptop)" class="delete">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
 
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

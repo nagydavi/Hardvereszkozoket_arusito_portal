@@ -59,7 +59,7 @@ export class CreateComponent implements OnInit{
 
   }
   
-  //wip
+  
   save() {
     if(this.form.get('name')?.value != '' && this.form.get('sku')?.value != '' && this.form.get('warranty')?.value != '' && this.form.get('discount')?.value != ''&& this.form.get('storage')?.value != ''){
       this.dialogRef.close(this.form.value);

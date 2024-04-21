@@ -17,7 +17,6 @@ $index = 0;
 while($line = mysqli_fetch_assoc($execute)) {
   $laptops[$index]['id'] = $line['id'];
   $laptops[$index]['name'] = $line['name'];
-  $laptops[$index]['main_picture'] = $line['main_picture'];
   $laptops[$index]['resolution'] = $line['resolution'];
   $laptops[$index]['screen'] = $line['screen'];
   $laptops[$index]['processor'] = $line['processor'];
@@ -31,6 +30,8 @@ while($line = mysqli_fetch_assoc($execute)) {
   $laptops[$index]['weight'] = $line['weight'];
   $laptops[$index]['keyboard'] = $line['keyboard'];
   $laptops[$index]['laptop_type_id'] = $line['laptop_type_id'];
+  $laptops[$index]['discount'] = $line['discount'];
+
 
 
   $index++;

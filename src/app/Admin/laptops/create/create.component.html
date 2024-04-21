@@ -1,0 +1,82 @@
+<div class="dialog">
+    <h2 mat-dialog-title>Laptop létrehozása</h2>
+
+    <mat-dialog-content [formGroup]="form">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Név" formControlName="name">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Felbontás" formControlName="resolution">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="number" placeholder="Képernyő méret" formControlName="screen">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Processzor" formControlName="processor">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Grafikus kártya" formControlName="grafic_card">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="text" placeholder="RAM" formControlName="ram">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="text" placeholder="SSD" formControlName="ssd">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="number" placeholder="Ár" formControlName="price">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Garancia" formControlName="warranty">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Akkumulátor" formControlName="battery">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="number" placeholder="Súly" formControlName="weight">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Billentyűzet" formControlName="keyboard">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-select matInput placeholder="Akció" formControlName="discount">
+                <mat-option value="1">Igen</mat-option>
+                <mat-option value="0">Nem</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-select matInput placeholder="Típus" formControlName="type">
+                <mat-option *ngFor="let type of laptopType" [value]="type.id">
+                    {{ type.type }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-select matInput placeholder="Oprendszer" formControlName="op">
+                <mat-option *ngFor="let op of opSys" [value]="op.id">
+                    {{ op.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button class="buttons"(click)="close()">Mégse</button>
+        <button class="buttons"(click)="save()">Mentés</button>
+    </mat-dialog-actions>
+</div>
