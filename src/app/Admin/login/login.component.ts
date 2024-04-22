@@ -11,6 +11,8 @@ import { User } from '../../Models/user';
 import { LoginService } from './login.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from "../menu/menu.component";
+import { Route, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit{
   users: User[]=[];
 
   
-  constructor(private loginService: LoginService){}
+  constructor(private loginService: LoginService,private router:Router,private snackBar: MatSnackBar){}
 
   ngOnInit(): void {
     this.getAll();
@@ -47,10 +49,25 @@ export class LoginComponent implements OnInit{
     password: new FormControl(''),
   });
 
-  submit() {
+  login() {
     if (this.form.valid) {
       this.submitEM.emit(this.form.value);
+      const foundUser = this.users.find((user: User) =>
+        user.name === this.form.value['username'] && user.password === this.form.value['password']
+      );
+
+      if (foundUser) {
+        localStorage.setItem('user', JSON.stringify(foundUser));
+        this.router.navigateByUrl('/admin/laptops')
+      }else{
+        this.snackBar.open('Hibás felhasználónév vagy jelszó!', 'Értem', {
+          duration: 3000, // Megjelenési időtartam millisecondban (3 másodperc)
+          verticalPosition: 'bottom', // Elhelyezkedés: alul
+          horizontalPosition: 'center', // Elhelyezkedés: középen
+        });
+      }
     }
+  
   }
   @Input() error: string | null | undefined;
 

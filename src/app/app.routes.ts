@@ -12,6 +12,8 @@ import { MenuComponent } from "./Admin/menu/menu.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { authGuard } from './auth.guard';
+import { roleGuard } from './role.guard';
 
 
 
@@ -20,11 +22,11 @@ import { FormsModule } from '@angular/forms';
 //lazy loading
 export const routes: Routes = [
     {path: 'admin/login', loadChildren: () => import ('./Admin/login/login.module').then(m=>m.LoginModule) },
-    {path: 'admin/laptops', loadChildren: () => import ('./Admin/laptops/laptops.module').then(m=>m.LaptopsModule) },
-    {path: 'admin/users', loadChildren: () => import ('./Admin/users/users.module').then(m=>m.UsersModule) },
-    {path: 'admin/ssd', loadChildren: () => import ('./Admin/ssd/ssd.module').then(m=>m.SsdModule) },
-    {path: 'admin/ram', loadChildren: () => import ('./Admin/ram/ram.module').then(m=>m.RamModule) },
-    {path: 'admin/pendrive', loadChildren: () => import ('./Admin/pendrive/pendrive.module').then(m=>m.PendriveModule) },
+    {path: 'admin/laptops', loadChildren: () => import ('./Admin/laptops/laptops.module').then(m=>m.LaptopsModule),canActivate: [authGuard] },
+    {path: 'admin/users', loadChildren: () => import ('./Admin/users/users.module').then(m=>m.UsersModule),canActivate: [authGuard,roleGuard] },
+    {path: 'admin/ssd', loadChildren: () => import ('./Admin/ssd/ssd.module').then(m=>m.SsdModule),canActivate: [authGuard] },
+    {path: 'admin/ram', loadChildren: () => import ('./Admin/ram/ram.module').then(m=>m.RamModule),canActivate: [authGuard] },
+    {path: 'admin/pendrive', loadChildren: () => import ('./Admin/pendrive/pendrive.module').then(m=>m.PendriveModule),canActivate: [authGuard] },
 
 
 ];
@@ -48,7 +50,7 @@ export const routes: Routes = [
         
     
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
 
   })
   export class AppRoutingModule { }

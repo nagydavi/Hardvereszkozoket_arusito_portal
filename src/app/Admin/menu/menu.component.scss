@@ -11,3 +11,14 @@ a:hover, a:active{
     margin: 0;
     
 }
+.logout-button {
+    background-color: transparent; /* Háttérszín eltávolítása */
+    border: none; /* Keret eltávolítása */ 
+    color: white;
+  }
+  .icon-center {
+    display: flex;
+    align-items: center; /* Tartalmat függőlegesen középre igazítja */
+    justify-content: center; /* Tartalmat vízszintesen középre igazítja */
+    padding-top: 4px;
+}
