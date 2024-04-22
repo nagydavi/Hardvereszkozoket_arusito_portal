@@ -22,6 +22,10 @@
                     <mat-icon>memory</mat-icon>
                     <span>Pendrive</span>
                 </a>
+                <a mat-list-item (click)="close(sidenav); logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Kijelentkezés</span>
+                </a>
             </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

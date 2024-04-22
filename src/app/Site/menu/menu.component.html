@@ -1,0 +1,57 @@
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav id="sidenav">
+            <mat-nav-list>
+                <a mat-list-item routerLink="" (click)="close(sidenav)">
+                    <mat-icon>home</mat-icon>
+                    <span>Főoldal</span>
+                </a>
+                <a mat-list-item routerLink="/side/laptops" (click)="close(sidenav)">
+                    <mat-icon>computer</mat-icon>
+                    <span>Laptopok</span>
+                </a>
+                <a mat-list-item routerLink="/site/ssd" (click)="close(sidenav)">
+                    <mat-icon>memory</mat-icon>
+                    <span>SSD</span>
+                </a>
+                <a mat-list-item routerLink="/site/ram" (click)="close(sidenav)">
+                    <mat-icon>memory</mat-icon>
+                    <span>RAM</span>
+                </a>
+                <a mat-list-item routerLink="/site/pendrive" (click)="close(sidenav)">
+                    <mat-icon>memory</mat-icon>
+                    <span>Pendrive</span>
+                </a>
+                <a mat-list-item (click)="close(sidenav); chatDialog()">
+                    <mat-icon>question_answer</mat-icon>
+                    <span>Chatbot</span>
+                </a>
+                <a mat-list-item (click)="close(sidenav); shopCartDialog()">
+                    <mat-icon>shopping_cart</mat-icon>
+                    <span>Kosár</span>
+                </a>
+            </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <div fxHide.gt-xs>
+                <button mat-icon-button (click)="onClickSidenav(sidenav)">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>    
+            <div>HardwareHaven</div>
+            <mat-icon id="computer">computer</mat-icon>
+            <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+                <ul fxLayout fxLayoutGap="10px" class="menu-items">
+                    <li><a routerLink="">Főoldal</a></li>
+                    <li><a routerLink="/site/laptops">Laptopok</a></li>
+                    <li><a routerLink="/site/ssd">SSD</a></li>
+                    <li><a routerLink="/site/ram">RAM</a></li>
+                    <li><a routerLink="/site/pendrive">Pendrive</a></li>
+                    <li><a>Chatbot</a><mat-icon>question_answer</mat-icon></li>
+                    <li class="icon-center"><a (click)="shopCartDialog()"><mat-icon class="logout-button">shopping_cart</mat-icon></a></li>
+                </ul>
+            </div>
+        </mat-toolbar>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
