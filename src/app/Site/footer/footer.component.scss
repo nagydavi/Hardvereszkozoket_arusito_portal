@@ -1,0 +1,24 @@
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: right;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Jobbra zárás */
+}
+
+.footer-content a {
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+}
+#name{
+    padding-right: 10px;
+}
+#phone{
+    padding-left: 10px;
+}

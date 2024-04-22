@@ -1,0 +1,40 @@
+#footer{
+    position:fixed;
+    bottom:0px;
+    width:100%;
+}
+.center {
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* A tartalmat a flexboxban középre igazítja */
+    align-items: center; /* A tartalmat a flexboxban függőlegesen középre igazítja */
+    height: 200px; /* A teljes képernyő magasságára terjeszti ki a div-et */
+}
+.wide-div {
+    background-color: beige; /* Bézs háttérszín */
+    width: 80%; /* Teljes szélesség */
+    height: 200px; /* Példa: 200px magasság */
+    border-radius: 8px;
+
+}
+.wide-div h1 {
+    padding-top: 40px;
+    font-weight: bold; /* Vastag betűtípus a h1 elemhez */
+    font-size: 32px; /* Példa: 32px-es betűméret */
+    text-align: center; /* Középre igazítás */
+}
+
+.wide-div p {
+    font-size: 20px; /* Példa: 20px-es betűméret */
+    text-align: center; /* Középre igazítás */
+}
+.laptop {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Három egyenlő széles oszlop */
+    grid-gap: 20px; /* Oszlopok közötti térköz */
+  }
+  
+  .card {
+    padding: 20px;
+    text-align: center;
+  }
