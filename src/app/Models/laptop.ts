@@ -1,7 +1,7 @@
 export class Laptop{
     id?: number;
     name: string = '';
-    main_picture?: any;
+    main_picture:string = 'notfound.webp';
     resolution: string = '';
     screen?: number;
     processor: string = '';

@@ -3,6 +3,11 @@
     bottom:0px;
     width:100%;
 }
+
+.tartalom{
+    
+    max-height: calc(100vh - 100px);
+}
 .center {
     padding: 20px;
     display: flex;
@@ -28,13 +33,46 @@
     font-size: 20px; /* Példa: 20px-es betűméret */
     text-align: center; /* Középre igazítás */
 }
-.laptop {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Három egyenlő széles oszlop */
-    grid-gap: 20px; /* Oszlopok közötti térköz */
-  }
-  
-  .card {
-    padding: 20px;
+
+.cim h1 {
+    font-size: 3em; /* Változtasd az "em" értékét az igényeidnek megfelelően */
+    font-weight: bold;
     text-align: center;
   }
+.ajanlok h2{
+    text-align: center;
+    font-size: 2em;
+}
+
+//Kártya
+.carddiv{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.card{
+    padding: 24px;
+    display: flex;
+    justify-content: center; /* Kártyák középre igazítása */
+}
+image{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;//tartja a képarányt
+}
+.responsive-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px ,1fr));
+    gap: 24px
+
+}
+mat-card-actions {
+    margin-top: auto; /* A gombok az alsó részen lesznek, a tartalom fölött */
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+  }
+.kosar{
+    background-color: green; /* kék háttér */
+    color: white; 
+}

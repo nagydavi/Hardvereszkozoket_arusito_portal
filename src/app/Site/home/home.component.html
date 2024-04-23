@@ -1,39 +1,106 @@
-<app-menusite></app-menusite>
-<div class="center">
-    <div class="wide-div">
-        <h1>Üdvözlöm az oldalon!</h1>
-        <p>Ez az oldal egy Szakdolgozat</p>
-        <p>Címe: Hardvereszközöket árusító portál.</p>
-    </div>
-</div>
-<div class="center">
-    <div class="laptop">
-      <mat-card class="card">Első kártya</mat-card>
-      <mat-card class="card">Második kártya</mat-card>
-      <mat-card class="card">Harmadik kártya</mat-card>
-    </div>
+<app-menusite id="menu"></app-menusite>
+<div class="tartalom">
+  <div class="center">
+      <div class="wide-div">
+          <h1>Üdvözlöm az oldalon!</h1>
+          <p>Ez az oldal egy Szakdolgozat</p>
+          <p>Címe: Hardvereszközöket árusító portál.</p>
+      </div>
   </div>
-<div class="center">
-    <div class="ssd">
-        <h1>Üdvözlöm az oldalon!</h1>
-        <p>Ez az oldal egy Szakdolgozat</p>
-        <p>Címe: Hardvereszközöket árusító portál.</p>
-    </div>
+  <div class="cim">
+    <h1>Termék ajánló</h1>
+  </div>
+  <div class="ajanlok">
+    <h2>Laptopok</h2>
+  </div>
+  <div class="carddiv">
+      <div class="card responsive-grid">
+        <mat-card class="card" *ngFor="let laptop of laptops">
+          <img [src]="assetUrl+laptop.main_picture" alt="Laptop" >
+          <mat-card-content style="text-align: center;">
+            <span style="font-weight: bold;">{{ laptop.name }}</span><br>
+            <span>{{ laptop.screen }}" - {{ laptop.resolution }}</span><br>
+            <span>{{ laptop.processor }}</span><br>
+            <span>{{ laptop.ram }}</span><br>
+            <span>{{ laptop.ssd }}</span><br>
+            <span>{{ laptop.price }} Ft</span><br>
+            <span>{{ getOpName(laptop.op_system_id) }}</span>
+          </mat-card-content>
+          <mat-card-actions>
+            <button class="kosar" mat-button>Kosárba</button>
+            <button mat-button>Megtekint</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>  
+  <div class="ajanlok">
+    <h2>SSD</h2>
+  </div>
+  <div class="carddiv">
+      <div class="card responsive-grid">
+        <mat-card class="card" *ngFor="let laptop of laptops">
+          <img [src]="assetUrl+laptop.main_picture" alt="Laptop" >
+          <mat-card-content style="text-align: center;">
+            <span style="font-weight: bold;">{{ laptop.name }}</span><br>
+            <span>{{ laptop.screen }}" - {{ laptop.resolution }}</span><br>
+            <span>{{ laptop.processor }}</span><br>
+            <span>{{ laptop.ram }}</span><br>
+            <span>{{ laptop.ssd }}</span><br>
+            <span>{{ laptop.price }} Ft</span><br>
+            <span>{{ getOpName(laptop.op_system_id) }}</span>
+          </mat-card-content>
+          <mat-card-actions>
+            <button class="kosar" mat-button>Kosárba</button>
+            <button mat-button>Megtekint</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+  </div>
+  <div class="ajanlok">
+    <h2>RAM</h2>
+  </div>
+  <div class="carddiv">
+      <div class="card responsive-grid">
+        <mat-card class="card" *ngFor="let laptop of laptops">
+          <img [src]="assetUrl+laptop.main_picture" alt="Laptop" >
+          <mat-card-content style="text-align: center;">
+            <span style="font-weight: bold;">{{ laptop.name }}</span><br>
+            <span>{{ laptop.screen }}" - {{ laptop.resolution }}</span><br>
+            <span>{{ laptop.processor }}</span><br>
+            <span>{{ laptop.ram }}</span><br>
+            <span>{{ laptop.ssd }}</span><br>
+            <span>{{ laptop.price }} Ft</span><br>
+            <span>{{ getOpName(laptop.op_system_id) }}</span>
+          </mat-card-content>
+          <mat-card-actions>
+            <button class="kosar" mat-button>Kosárba</button>
+            <button mat-button>Megtekint</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+  </div>
+  <div class="ajanlok">
+    <h2>Pendrive</h2>
+  </div>
+  <div class="carddiv">
+      <div class="card responsive-grid">
+        <mat-card class="card" *ngFor="let laptop of laptops">
+          <img [src]="assetUrl+laptop.main_picture" alt="Laptop" >
+          <mat-card-content style="text-align: center;">
+            <span style="font-weight: bold;">{{ laptop.name }}</span><br>
+            <span>{{ laptop.screen }}" - {{ laptop.resolution }}</span><br>
+            <span>{{ laptop.processor }}</span><br>
+            <span>{{ laptop.ram }}</span><br>
+            <span>{{ laptop.ssd }}</span><br>
+            <span>{{ laptop.price }} Ft</span><br>
+            <span>{{ getOpName(laptop.op_system_id) }}</span>
+          </mat-card-content>
+          <mat-card-actions>
+            <button class="kosar" mat-button>Kosárba</button>
+            <button mat-button>Megtekint</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+  </div>
 </div>
-<div class="center">
-    <div class="ram">
-        <h1>Üdvözlöm az oldalon!</h1>
-        <p>Ez az oldal egy Szakdolgozat</p>
-        <p>Címe: Hardvereszközöket árusító portál.</p>
-    </div>
-</div>
-<div class="center">
-    <div class="pendrive">
-        <h1>Üdvözlöm az oldalon!</h1>
-        <p>Ez az oldal egy Szakdolgozat</p>
-        <p>Címe: Hardvereszközöket árusító portál.</p>
-    </div>
-</div>
-
-
 <app-footer id="footer"></app-footer>
