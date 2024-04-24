@@ -111,6 +111,7 @@ export class LaptopsComponent implements OnInit {
         this.createLaptop.keyboard = '';
         this.createLaptop.laptop_type_id = 0;
         this.createLaptop.discount = false;
+        this.createLaptop.discountprice = 0;
   
         this.getAll();
       }
@@ -135,6 +136,8 @@ export class LaptopsComponent implements OnInit {
         this.editLaptopData.keyboard = '';
         this.editLaptopData.laptop_type_id = 0;
         this.editLaptopData.discount = false;
+        this.editLaptopData.discountprice = 0;
+
 
         this.getAll();
       }
@@ -165,6 +168,8 @@ export class LaptopsComponent implements OnInit {
               this.createLaptop.keyboard = result['keyboard'];
               this.createLaptop.laptop_type_id = result['type'];
               this.createLaptop.discount = result['discount'];
+              this.createLaptop.discountprice = result['discountprice'];
+
               
               this.create();
               this.getAll(); 
@@ -200,6 +205,8 @@ export class LaptopsComponent implements OnInit {
         this.editLaptopData.keyboard = result['keyboard'];
         this.editLaptopData.laptop_type_id = result['laptop_type_id'];
         this.editLaptopData.discount = result['discount'];
+        this.editLaptopData.discountprice = result['discountprice'];
+
       
         this.update();
         this.getAll();

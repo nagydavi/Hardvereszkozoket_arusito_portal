@@ -31,6 +31,7 @@ while($line = mysqli_fetch_assoc($execute)) {
   $laptops[$index]['keyboard'] = $line['keyboard'];
   $laptops[$index]['laptop_type_id'] = $line['laptop_type_id'];
   $laptops[$index]['discount'] = $line['discount'];
+  $laptops[$index]['discountprice'] = $line['discount_price'];
 
 
 

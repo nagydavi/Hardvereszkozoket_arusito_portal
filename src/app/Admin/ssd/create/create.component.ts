@@ -45,7 +45,9 @@ export class CreateComponent implements OnInit{
     sku: new FormControl(''),
     warranty: new FormControl(''),
     discount: new FormControl(''), 
-    storage: new FormControl('') 
+    storage: new FormControl(''),
+    price: new FormControl(''), 
+    discountprice: new FormControl('')  
 
     
   });
@@ -61,7 +63,7 @@ export class CreateComponent implements OnInit{
   
   
   save() {
-    if(this.form.get('name')?.value != '' && this.form.get('sku')?.value != '' && this.form.get('warranty')?.value != '' && this.form.get('discount')?.value != ''&& this.form.get('storage')?.value != ''){
+    if(this.form.get('name')?.value != '' && this.form.get('sku')?.value != '' && this.form.get('warranty')?.value != '' && this.form.get('discount')?.value != ''&& this.form.get('storage')?.value != ''&& this.form.get('price')?.value != ''&& this.form.get('discountprice')?.value != ''){
       this.dialogRef.close(this.form.value);
     }else{
       // Ha valamelyik mező nincs kitöltve, megjelenítünk egy értesítést az alján

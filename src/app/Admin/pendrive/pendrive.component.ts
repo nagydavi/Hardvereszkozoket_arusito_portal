@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component  } from '@angular/core';
 import { MenuComponent } from "../menu/menu.component";
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatDialog, MatDialogModule,MatDialogConfig} from "@angular/material/dialog";
+import { MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { MatDialog, MatDialogModule,MatDialogConfig} from "@angular/material/dialog";
 import { CreateComponent } from './create/create.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { PendriveService } from './pendrive.service';
 import { Pendrive } from '../../Models/pendrive';
 import { Image } from '../../Models/image';
@@ -66,6 +66,9 @@ export class PendriveComponent {
         this.createPendrive.discount = false;
         this.createPendrive.storage = 0;
         this.createPendrive.writespeed = '';
+        this.createPendrive.price = 0;
+        this.createPendrive.discountprice = 0;
+
 
         this.getAll();
       }
@@ -81,6 +84,8 @@ export class PendriveComponent {
         this.editPendriveData.discount = false;
         this.editPendriveData.storage = 0;
         this.editPendriveData.writespeed = '';
+        this.editPendriveData.price = 0;
+        this.editPendriveData.discountprice = 0;
       }
     )
   }
@@ -100,6 +105,9 @@ export class PendriveComponent {
                 this.createPendrive.discount = result['discount'];
                 this.createPendrive.storage = result['storage'];
                 this.createPendrive.writespeed = result['writespeed']
+                this.createPendrive.price = result['price']
+                this.createPendrive.discountprice = result['discountprice']
+
                 this.create();
 
                 
@@ -126,6 +134,9 @@ export class PendriveComponent {
                 this.editPendriveData.discount = result['discount'];
                 this.editPendriveData.storage = result['storage'];
                 this.editPendriveData.writespeed = result['writespeed'];
+                this.editPendriveData.price = result['price'];
+                this.editPendriveData.discountprice = result['discountprice'];
+
                 this.update();
                 this.getAll();
                 this.getAllImageDB();

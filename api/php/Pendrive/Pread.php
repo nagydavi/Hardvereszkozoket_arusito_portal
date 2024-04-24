@@ -22,6 +22,9 @@ while($line = mysqli_fetch_assoc($execute)) {
   $pendrive[$index]['storage'] = $line['storage'];
   $pendrive[$index]['writespeed'] = $line['writespeed'];
   $pendrive[$index]['discount'] = $line['discount'];
+  $pendrive[$index]['price'] = $line['price'];
+  $pendrive[$index]['discountprice'] = $line['discount_price'];
+
 
 
   $index++;

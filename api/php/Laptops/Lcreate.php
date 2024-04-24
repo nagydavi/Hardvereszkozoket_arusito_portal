@@ -47,6 +47,9 @@ if (!isset($data->op_system_id)) {
 if (!isset($data->price)) {
     $missingData[] = 'Ár';
 }
+if (!isset($data->discountprice)) {
+    $missingData[] = 'Akciós ár';
+}
 if (!isset($data->warranty)) {
     $missingData[] = 'Garancia';
 }
@@ -76,7 +79,7 @@ if (!empty($missingData)) {
 
 
     // Ellenőrizzük, hogy minden szükséges adatot megkaptunk-e
-    if (!isset($data->name) || !isset($data->resolution) || !isset($data->screen) || !isset($data->processor) || !isset($data->grafic_card) || !isset($data->ram) || !isset($data->ssd) || !isset($data->op_system_id) || !isset($data->price) || !isset($data->warranty) || !isset($data->battery) || !isset($data->weight) || !isset($data->keyboard) || !isset($data->laptop_type_id) || !isset($data->discount) ) {
+    if (!isset($data->name) || !isset($data->resolution) || !isset($data->screen) || !isset($data->processor) || !isset($data->grafic_card) || !isset($data->ram) || !isset($data->ssd) || !isset($data->op_system_id) || !isset($data->price) || !isset($data->warranty) || !isset($data->battery) || !isset($data->weight) || !isset($data->keyboard) || !isset($data->laptop_type_id) || !isset($data->discount) || !isset($data->discountprice) ) {
         http_response_code(400);
         echo json_encode($data);
         echo json_encode(array('error' => 'Hiányzó adat(ok).'));
@@ -99,11 +102,12 @@ if (!empty($missingData)) {
     $keyboard = $data->keyboard;
     $laptop_type_id = $data->laptop_type_id;
     $discount = $data->discount ? 1 : 0;
+    $discount_price = intval($data->discountprice);
 
 
 
     // SQL lekérdezés előkészítése az adatok beszúrására
-    $sql = "INSERT INTO laptops (name, resolution, screen, processor, grafic_card, ram, ssd, op_system_id, price, warranty, battery, weight, keyboard, laptop_type_id, discount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO laptops (name, resolution, screen, processor, grafic_card, ram, ssd, op_system_id, price, warranty, battery, weight, keyboard, laptop_type_id, discount, discount_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         http_response_code(500);
@@ -112,7 +116,7 @@ if (!empty($missingData)) {
     }
 
     // Adatok paraméterezése a lekérdezésben
-    $stmt->bind_param('ssissssiissisii', $name, $resolution, $screen, $processor, $grafic_card, $ram, $ssd, $op_system_id, $price, $warranty, $battery, $weight, $keyboard, $laptop_type_id, $discount);
+    $stmt->bind_param('ssissssiissisiii', $name, $resolution, $screen, $processor, $grafic_card, $ram, $ssd, $op_system_id, $price, $warranty, $battery, $weight, $keyboard, $laptop_type_id, $discount,$discount_price);
     $result = $stmt->execute();
 
     // Ellenőrizzük, hogy sikeres volt-e a beszúrás
@@ -133,7 +137,8 @@ if (!empty($missingData)) {
             'weight' => $weight,
             'keyboard' => $keyboard,
             'laptop_type_id' => $laptop_type_id,
-            'discount' => $discount
+            'discount' => $discount,
+            'discountprice' => $discount_price
         );
         echo json_encode(array('laptop' => $laptop));
     } else {

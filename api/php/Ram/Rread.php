@@ -21,6 +21,9 @@ while($line = mysqli_fetch_assoc($execute)) {
   $ram[$index]['warranty'] = $line['warranty'];
   $ram[$index]['storage'] = $line['storage'];
   $ram[$index]['discount'] = $line['discount'];
+  $ram[$index]['price'] = $line['price'];
+  $ram[$index]['discountprice'] = $line['discount_price'];
+
 
 
   $index++;

@@ -16,5 +16,7 @@ export class Laptop{
     keyboard: string = '';
     laptop_type_id?: number;
     discount = false;
+    discountprice: number = 0;
+
 
 }

@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode($postData);
 
     // Ellenőrizzük, hogy minden szükséges adatot megkaptunk-e
-    if (!isset($data->name) || !isset($data->sku) || !isset($data->warranty) || !isset($data->discount) || !isset($data->storage) ){
+    if (!isset($data->name) || !isset($data->sku) || !isset($data->warranty) || !isset($data->discount) || !isset($data->storage) || !isset($data->price) || !isset($data->discountprice) ){
         http_response_code(400);
         echo json_encode($data);
         echo json_encode(array('error' => 'Hiányzó adat(ok).'));
@@ -30,11 +30,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $warranty = $data->warranty;
     $discount = $data->discount;
     $storage = $data->storage;
+    $price = $data->price;
+    $discount_price = $data->discountprice;
+
 
 
 
     // SQL lekérdezés előkészítése az adatok beszúrására
-    $sql = "INSERT INTO ram (name, sku, warranty, discount, storage) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO ram (name, sku, warranty, discount, storage, price,discount_price) VALUES (?, ?, ?, ?, ?,?,?)";
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         http_response_code(500);
@@ -43,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Adatok paraméterezése a lekérdezésben
-    $stmt->bind_param('sssii', $name, $sku, $warranty, $discount, $storage); // 'sssi', hogy a paramok milyen típusúak lesznek string, string, string, integer, 
+    $stmt->bind_param('sssiiii', $name, $sku, $warranty, $discount, $storage, $price,$discount_price); // 'sssi', hogy a paramok milyen típusúak lesznek string, string, string, integer, 
     $result = $stmt->execute();
 
     // Ellenőrizzük, hogy sikeres volt-e a beszúrás
@@ -54,7 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'sku' => $sku,
             'warranty' => $warranty,
             'discount' => $discount,
-            'storage' => $storage
+            'storage' => $storage,
+            'price' => $price,
+            'discountprice' => $discount_price
         );
         echo json_encode(array('ram' => $ram));
     } else {

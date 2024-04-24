@@ -64,6 +64,9 @@ export class RamService {
           modifiedRam.warranty = r.warranty;
           modifiedRam.discount = r.discount;
           modifiedRam.storage = r.storage;
+          modifiedRam.price = r.price;
+          modifiedRam.discountprice = r.discountprice;
+
 
         }
 

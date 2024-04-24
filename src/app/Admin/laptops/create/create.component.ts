@@ -56,7 +56,9 @@ export class CreateComponent {
     weight: new FormControl(0),
     keyboard: new FormControl(''),
     discount: new FormControl(''), 
-    type: new FormControl(0)
+    type: new FormControl(0),
+    discountprice: new FormControl(0)
+
   });
 
   constructor(private createService: CreateService,private dialogRef: MatDialogRef<CreateComponent>,private snackBar: MatSnackBar, private http:HttpClient){
@@ -83,7 +85,8 @@ export class CreateComponent {
       this.form.get('weight')?.value !== '' &&
       this.form.get('keyboard')?.value !== '' &&
       this.form.get('discount')?.value !== '' &&
-      this.form.get('type')?.value !== ''
+      this.form.get('type')?.value !== '' &&
+      this.form.get('discountprice')?.value !== '' 
   ) {
       this.dialogRef.close(this.form.value);
     }else{

@@ -65,7 +65,11 @@ export class EditComponent {
     resolution: new FormControl(''),
     warranty: new FormControl(''),
     discount: new FormControl(''),
-    storage: new FormControl('') 
+    storage: new FormControl(''),
+    price: new FormControl('') ,
+    discountprice: new FormControl('') 
+
+ 
     
   });
 
@@ -79,7 +83,10 @@ export class EditComponent {
       sku: new FormControl(this.ram.sku), 
       warranty: new FormControl(this.ram.warranty),
       storage: new FormControl(this.ram.storage),
-      discount: new FormControl(this.ram.discount) 
+      discount: new FormControl(this.ram.discount),
+      price: new FormControl(this.ram.price), 
+      discountprice: new FormControl(this.ram.discountprice) 
+
  
  
     });
@@ -143,6 +150,9 @@ export class EditComponent {
       this.sendRam.warranty = this.form.get('warranty')?.value;
       this.sendRam.storage = this.form.get('storage')?.value;
       this.sendRam.discount = this.form.get('discount')?.value;
+      this.sendRam.price = this.form.get('price')?.value;
+      this.sendRam.discountprice = this.form.get('discountprice')?.value;
+
       this.dialogRef.close(this.sendRam);
     }else{
       // Ha valamelyik mező nincs kitöltve, megjelenítünk egy értesítést az alján

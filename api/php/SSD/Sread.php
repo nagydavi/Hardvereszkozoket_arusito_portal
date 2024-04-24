@@ -21,6 +21,8 @@ while($line = mysqli_fetch_assoc($execute)) {
   $ssd[$index]['warranty'] = $line['warranty'];
   $ssd[$index]['storage'] = $line['storage'];
   $ssd[$index]['discount'] = $line['discount'];
+  $ssd[$index]['price'] = $line['price'];
+  $ssd[$index]['discountprice'] = $line['discount_price'];
 
 
   $index++;

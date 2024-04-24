@@ -8,7 +8,7 @@ $getData = file_get_contents('php://input');
 // Extract JSON data
 $data = json_decode($getData);
 
-if (!isset($data->name) || !isset($data->sku) || !isset($data->warranty) || !isset($data->discount) || !isset($data->storage) || !isset($data->writespeed) ) {
+if (!isset($data->name) || !isset($data->sku) || !isset($data->warranty) || !isset($data->discount) || !isset($data->storage) || !isset($data->writespeed) || !isset($data->price) || !isset($data->discountprice) ) {
     http_response_code(400);
     echo json_encode($data);
     echo json_encode(array('error' => 'Hiányzó adat(ok).'));
@@ -24,10 +24,13 @@ $warranty = $data->warranty;
 $discount = $data->discount ? 1 : 0;
 $storage = intval($data->storage);
 $writespeed = intval($data->writespeed);
+$price = intval($data->price);
+$discount_price = intval($data->discountprice);
+
 
 
 // SQL
-$sql = "UPDATE pendrive SET name='$name', sku='$sku', warranty='$warranty', discount=$discount, storage=$storage, writespeed=$writespeed WHERE id=$id";
+$sql = "UPDATE pendrive SET name='$name', sku='$sku', warranty='$warranty', discount=$discount, storage=$storage, writespeed=$writespeed, price=$price, discount_price=$discount_price WHERE id=$id";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     http_response_code(500);
@@ -43,7 +46,10 @@ $pendrive = array(
     'warranty' => $warranty,
     'discount' => $discount,
     'storage' => $storage,
-    'writespeed' => $writespeed
+    'writespeed' => $writespeed,
+    'price' => $price,
+    'discountprice' => $discount_price
+
 
 );
 

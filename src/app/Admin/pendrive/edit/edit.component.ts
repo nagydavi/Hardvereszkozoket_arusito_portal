@@ -70,7 +70,11 @@ export class EditComponent {
     warranty: new FormControl(''),
     discount: new FormControl(''),
     storage: new FormControl(''),
-    writespeed: new FormControl('') 
+    writespeed: new FormControl(''),
+    price: new FormControl(''),
+    discountprice: new FormControl('') 
+ 
+ 
     
   });
 
@@ -87,9 +91,9 @@ export class EditComponent {
       warranty: new FormControl(this.pendrive.warranty),
       storage: new FormControl(this.pendrive.storage),
       discount: new FormControl(this.pendrive.discount),
-      writespeed: new FormControl(this.pendrive.writespeed) 
-
- 
+      writespeed: new FormControl(this.pendrive.writespeed),
+      price: new FormControl(this.pendrive.price),
+      discountprice: new FormControl(this.pendrive.discountprice) 
  
     });
   }
@@ -148,6 +152,9 @@ export class EditComponent {
       this.sendPendrive.storage = this.form.get('storage')?.value;
       this.sendPendrive.discount = this.form.get('discount')?.value;
       this.sendPendrive.writespeed = this.form.get('writespeed')?.value;
+      this.sendPendrive.price = this.form.get('price')?.value;
+      this.sendPendrive.discountprice = this.form.get('discountprice')?.value;
+
       this.dialogRef.close(this.sendPendrive);
     }else{
       // Ha valamelyik mező nincs kitöltve, megjelenítünk egy értesítést az alján

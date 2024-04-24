@@ -73,6 +73,8 @@ export class SsdService {
           modifiedSsd.warranty = s.warranty;
           modifiedSsd.discount = s.discount;
           modifiedSsd.storage = s.storage;
+          modifiedSsd.price = s.price;
+          modifiedSsd.discountprice = s.discountprice;
 
         }
 

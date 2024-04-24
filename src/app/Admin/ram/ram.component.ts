@@ -64,6 +64,9 @@ export class RamComponent {
         this.createRam.warranty = '';
         this.createRam.discount = false;
         this.createRam.storage = 0;
+        this.createRam.price = 0;
+        this.createRam.discountprice = 0;
+
 
         this.getAll();
       }
@@ -78,6 +81,9 @@ export class RamComponent {
         this.editRamData.warranty = '';
         this.editRamData.discount = false;
         this.editRamData.storage = 0;
+        this.editRamData.price = 0;
+        this.editRamData.discountprice = 0;
+
       }
     )
   }
@@ -97,6 +103,9 @@ export class RamComponent {
                 this.createRam.warranty = result['warranty'];
                 this.createRam.discount = result['discount'];
                 this.createRam.storage = result['storage'];
+                this.createRam.price = result['price'];
+                this.createRam.discountprice = result['discountprice'];
+
                 this.create();
 
                 
@@ -122,6 +131,9 @@ export class RamComponent {
                 this.editRamData.warranty = result['warranty'];
                 this.editRamData.discount = result['discount'];
                 this.editRamData.storage = result['storage'];
+                this.editRamData.price = result['price'];
+                this.editRamData.discountprice = result['discountprice'];
+
                 this.update();
                 this.getAll();
                 this.getAllImageDB();

@@ -110,6 +110,7 @@ export class LaptopsService {
           modifiedLaptop.keyboard = l.keyboard;
           modifiedLaptop.laptop_type_id = l.laptop_type_id;
           modifiedLaptop.discount = l.discount;
+          modifiedLaptop.discountprice = l.discountprice;
       }
       
 

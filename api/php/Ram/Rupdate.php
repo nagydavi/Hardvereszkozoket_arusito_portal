@@ -8,7 +8,7 @@ $getData = file_get_contents('php://input');
 // Extract JSON data
 $data = json_decode($getData);
 
-if (!isset($data->name) || !isset($data->sku) || !isset($data->warranty) || !isset($data->discount) || !isset($data->storage) ) {
+if (!isset($data->name) || !isset($data->sku) || !isset($data->warranty) || !isset($data->discount) || !isset($data->storage) || !isset($data->price) || !isset($data->discountprice) ) {
     http_response_code(400);
     echo json_encode($data);
     echo json_encode(array('error' => 'Hiányzó adat(ok).'));
@@ -23,9 +23,12 @@ $sku = $data->sku;
 $warranty = $data->warranty;
 $discount = $data->discount ? 1 : 0;
 $storage = intval($data->storage);
+$price = intval($data->price);
+$discount_price = intval($data->discountprice);
+
 
 // SQL
-$sql = "UPDATE ram SET name='$name', sku='$sku', warranty='$warranty', discount=$discount, storage=$storage WHERE id=$id";
+$sql = "UPDATE ram SET name='$name', sku='$sku', warranty='$warranty', discount=$discount, storage=$storage, price=$price, discount_price=$discount_price WHERE id=$id";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     http_response_code(500);
@@ -40,7 +43,12 @@ $ram = array(
     'sku' => $sku,
     'warranty' => $warranty,
     'discount' => $discount,
-    'storage' => $storage
+    'storage' => $storage,
+    'price' => $price,
+    'discountprice' => $discount_price
+
+
+
 );
 
 echo json_encode(array('ram' => $ram));

@@ -67,6 +67,9 @@ export class PendriveService {
           modifiedPendrive.discount = p.discount;
           modifiedPendrive.storage = p.storage;
           modifiedPendrive.writespeed = p.writespeed;
+          modifiedPendrive.price = p.price;
+          modifiedPendrive.discountprice = p.discountprice;
+
 
         }
 

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'; 
@@ -7,21 +7,18 @@ import { MatOption } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpClient, HttpClientModule, HttpEventType, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { Observable, every } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
-import { MatList, MatListModule } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { environment } from '../../../../environments/environment';
 import { EditService } from './edit.service';
-import { SSD } from '../../../Models/ssd';
 import { Image } from '../../../Models/image';
 import { MatIcon } from '@angular/material/icon';
 import { Laptop } from '../../../Models/laptop';
 import { LaptopType } from '../../../Models/laptop_type';
 import { OpSystem } from '../../../Models/opsys';
-import { StickyStyler } from '@angular/cdk/table';
 
 
 
@@ -85,7 +82,9 @@ export class EditComponent {
     weight: new FormControl(0),
     keyboard: new FormControl(''),
     discount: new FormControl(''), 
-    type: new FormControl(0)
+    type: new FormControl(0),
+    discountprice: new FormControl(0),
+
   });
 
   constructor(private editService: EditService, private dialogRef: MatDialogRef<EditComponent>,private snackBar: MatSnackBar,@Inject(MAT_DIALOG_DATA) public laptop: any,private formBuilder: FormBuilder,private http: HttpClient
@@ -110,7 +109,9 @@ ngOnInit(): void {
       weight: new FormControl(this.laptop.weight),
       keyboard: new FormControl(this.laptop.keyboard),
       type: new FormControl(this.laptop.laptop_type_id),
-      discount: new FormControl(this.laptop.discount)
+      discount: new FormControl(this.laptop.discount),
+      discountprice: new FormControl(this.laptop.discountprice),
+
 
 
   });
@@ -200,7 +201,9 @@ update() {
     this.form.get('weight')?.value != '' &&
     this.form.get('keyboard')?.value != '' &&
     this.form.get('type')?.value != '' &&
-    this.form.get('discount')?.value != ''
+    this.form.get('discount')?.value != '' &&
+    this.form.get('discountprice')?.value != ''
+
   ) {
     this.sendLaptop.id = this.laptop.id;
     this.sendLaptop.name = this.form.get('name')?.value;
@@ -218,7 +221,7 @@ update() {
     this.sendLaptop.keyboard = this.form.get('keyboard')?.value;
     this.sendLaptop.laptop_type_id = this.form.get('type')?.value;
     this.sendLaptop.discount = this.form.get('discount')?.value;
-    console.log(this.sendLaptop)
+    this.sendLaptop.discountprice = this.form.get('discountprice')?.value;
     this.dialogRef.close(this.sendLaptop);
   } else {
     // Ha valamelyik mező nincs kitöltve, megjelenítünk egy értesítést az alján

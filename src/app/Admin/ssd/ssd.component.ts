@@ -73,7 +73,8 @@ export class SsdComponent {
             this.createSSD.warranty = '';
             this.createSSD.discount = false;
             this.createSSD.storage = 0;
-
+            this.createSSD.price = 0;
+            this.createSSD.discountprice = 0;
             this.getAll();
           }
         )
@@ -88,6 +89,8 @@ export class SsdComponent {
             this.editSSDData.warranty = '';
             this.editSSDData.discount = false;
             this.editSSDData.storage = 0;
+            this.editSSDData.price = 0;
+            this.editSSDData.discountprice = 0;
           }
         )
       }
@@ -107,6 +110,8 @@ export class SsdComponent {
                     this.createSSD.warranty = result['warranty'];
                     this.createSSD.discount = result['discount'];
                     this.createSSD.storage = result['storage'];
+                    this.createSSD.price = result['price'];
+                    this.createSSD.discountprice = result['discountprice'];
                     this.create();
 
                     
@@ -133,6 +138,8 @@ export class SsdComponent {
                 this.editSSDData.warranty = result['warranty'];
                 this.editSSDData.discount = result['discount'];
                 this.editSSDData.storage = result['storage'];
+                this.editSSDData.price = result['price'];
+                this.editSSDData.discountprice = result['discountprice'];
                 this.update();
                 this.getAll();
                 this.getAllImageDB();

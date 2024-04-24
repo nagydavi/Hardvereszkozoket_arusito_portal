@@ -68,7 +68,11 @@ export class EditComponent {
     resolution: new FormControl(''),
     warranty: new FormControl(''),
     discount: new FormControl(''),
-    storage: new FormControl('') 
+    storage: new FormControl(''),
+    price: new FormControl(''),
+    discountprice: new FormControl(''),
+
+
     
   });
 
@@ -79,6 +83,7 @@ export class EditComponent {
 
 }
   ngOnInit(): void {
+    console.log(this.ssd);
     this.getAllImages();
     this.getAllImageDB();
     this.form = this.formBuilder.group({
@@ -86,8 +91,9 @@ export class EditComponent {
       sku: new FormControl(this.ssd.sku), 
       warranty: new FormControl(this.ssd.warranty),
       storage: new FormControl(this.ssd.storage),
-      discount: new FormControl(this.ssd.discount) 
- 
+      discount: new FormControl(this.ssd.discount),
+      price: new FormControl(this.ssd.price) ,
+      discountprice: new FormControl(this.ssd.discountprice) 
  
     });
   }
@@ -141,13 +147,15 @@ export class EditComponent {
   //Képfeltöltés vége 
 
   update() {
-    if(this.form.get('name')?.value != '' && this.form.get('sku')?.value != '' && this.form.get('warranty')?.value != '' && this.form.get('discount')?.value != '' && this.form.get('storage')?.value != ''){
+    if(this.form.get('name')?.value != '' && this.form.get('sku')?.value != '' && this.form.get('warranty')?.value != '' && this.form.get('discount')?.value != '' && this.form.get('storage')?.value != '' && this.form.get('price')?.value != '' && this.form.get('discountprice')?.value != ''){
       this.sendSSD.id  = this.ssd.id;
       this.sendSSD.name = this.form.get('name')?.value;
       this.sendSSD.sku = this.form.get('sku')?.value;
       this.sendSSD.warranty = this.form.get('warranty')?.value;
       this.sendSSD.storage = this.form.get('storage')?.value;
       this.sendSSD.discount = this.form.get('discount')?.value;
+      this.sendSSD.price = this.form.get('price')?.value;
+      this.sendSSD.discountprice = this.form.get('discountprice')?.value;
       this.dialogRef.close(this.sendSSD);
     }else{
       // Ha valamelyik mező nincs kitöltve, megjelenítünk egy értesítést az alján

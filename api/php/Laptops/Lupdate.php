@@ -65,7 +65,7 @@ if (!empty($missingData)) {
     exit;
 }
 
-if (!isset($data->name) || !isset($data->resolution) || !isset($data->screen) || !isset($data->processor) || !isset($data->grafic_card) || !isset($data->ram) || !isset($data->ssd) || !isset($data->op_system_id) || !isset($data->price) || !isset($data->warranty) || !isset($data->battery) || !isset($data->weight) || !isset($data->keyboard) || !isset($data->laptop_type_id) || !isset($data->discount) ) {
+if (!isset($data->name) || !isset($data->resolution) || !isset($data->screen) || !isset($data->processor) || !isset($data->grafic_card) || !isset($data->ram) || !isset($data->ssd) || !isset($data->op_system_id) || !isset($data->price) || !isset($data->warranty) || !isset($data->battery) || !isset($data->weight) || !isset($data->keyboard) || !isset($data->laptop_type_id) || !isset($data->discount) || !isset($data->discountprice) ) {
     http_response_code(400);
     echo json_encode($data);
     echo json_encode(array('error' => 'Hiányzó adat(ok).'));
@@ -84,6 +84,7 @@ $ram = $data->ram;
 $ssd = $data->ssd;
 $op_system_id = $data->op_system_id;
 $price = intval($data->price);
+$discount_price = intval($data->discountprice);
 $warranty = $data->warranty;
 $battery = $data->battery;
 $weight = intval($data->weight);
@@ -107,7 +108,8 @@ $sql = "UPDATE laptops SET
         weight=$weight, 
         keyboard='$keyboard', 
         laptop_type_id=$laptop_type_id, 
-        discount=$discount 
+        discount=$discount,
+        discount_price=$discount_price 
         WHERE id=$id";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
@@ -133,7 +135,8 @@ $laptop = array(
     'weight' => $weight,
     'keyboard' => $keyboard,
     'laptop_type_id' => $laptop_type_id,
-    'discount' => $discount
+    'discount' => $discount,
+    'discountprice' => $discount_price
 );
 
 
