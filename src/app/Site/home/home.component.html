@@ -38,16 +38,12 @@
   </div>
   <div class="carddiv">
       <div class="card responsive-grid">
-        <mat-card class="card" *ngFor="let laptop of laptops">
-          <img [src]="assetUrl+laptop.main_picture" alt="Laptop" >
+        <mat-card class="card" *ngFor="let s of ssd">
+          <img [src]="assetUrl+s.main_picture" alt="Laptop" >
           <mat-card-content style="text-align: center;">
-            <span style="font-weight: bold;">{{ laptop.name }}</span><br>
-            <span>{{ laptop.screen }}" - {{ laptop.resolution }}</span><br>
-            <span>{{ laptop.processor }}</span><br>
-            <span>{{ laptop.ram }}</span><br>
-            <span>{{ laptop.ssd }}</span><br>
-            <span>{{ laptop.price }} Ft</span><br>
-            <span>{{ getOpName(laptop.op_system_id) }}</span>
+            <span style="font-weight: bold;">{{ s.name }}</span><br>
+            <span>{{ s.storage }} GB</span><br>
+            <span>{{ s.price }} Ft</span><br>
           </mat-card-content>
           <mat-card-actions>
             <button class="kosar" mat-button>Kosárba</button>
@@ -61,16 +57,12 @@
   </div>
   <div class="carddiv">
       <div class="card responsive-grid">
-        <mat-card class="card" *ngFor="let laptop of laptops">
-          <img [src]="assetUrl+laptop.main_picture" alt="Laptop" >
+        <mat-card class="card" *ngFor="let r of ram">
+          <img [src]="assetUrl+r.main_picture" alt="Laptop" >
           <mat-card-content style="text-align: center;">
-            <span style="font-weight: bold;">{{ laptop.name }}</span><br>
-            <span>{{ laptop.screen }}" - {{ laptop.resolution }}</span><br>
-            <span>{{ laptop.processor }}</span><br>
-            <span>{{ laptop.ram }}</span><br>
-            <span>{{ laptop.ssd }}</span><br>
-            <span>{{ laptop.price }} Ft</span><br>
-            <span>{{ getOpName(laptop.op_system_id) }}</span>
+            <span style="font-weight: bold;">{{ r.name }}</span><br>
+            <span>{{ r.storage }} GB</span><br>
+            <span>{{ r.price }} Ft</span><br>
           </mat-card-content>
           <mat-card-actions>
             <button class="kosar" mat-button>Kosárba</button>
@@ -84,16 +76,12 @@
   </div>
   <div class="carddiv">
       <div class="card responsive-grid">
-        <mat-card class="card" *ngFor="let laptop of laptops">
-          <img [src]="assetUrl+laptop.main_picture" alt="Laptop" >
+        <mat-card class="card" *ngFor="let p of pendrive">
+          <img [src]="assetUrl+p.main_picture" alt="Laptop" >
           <mat-card-content style="text-align: center;">
-            <span style="font-weight: bold;">{{ laptop.name }}</span><br>
-            <span>{{ laptop.screen }}" - {{ laptop.resolution }}</span><br>
-            <span>{{ laptop.processor }}</span><br>
-            <span>{{ laptop.ram }}</span><br>
-            <span>{{ laptop.ssd }}</span><br>
-            <span>{{ laptop.price }} Ft</span><br>
-            <span>{{ getOpName(laptop.op_system_id) }}</span>
+            <span style="font-weight: bold;">{{ p.name }}</span><br>
+            <span>{{ p.storage }} GB</span><br>
+            <span>{{ p.price }} Ft</span><br>
           </mat-card-content>
           <mat-card-actions>
             <button class="kosar" mat-button>Kosárba</button>
