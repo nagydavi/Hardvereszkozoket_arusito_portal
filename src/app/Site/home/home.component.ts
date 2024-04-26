@@ -12,6 +12,8 @@ import { MatButton } from '@angular/material/button';
 import { SSD } from '../../Models/ssd';
 import { Ram } from '../../Models/ram';
 import { Pendrive } from '../../Models/pendrive';
+import { SsdviewComponent } from '../ssdview/ssdview.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 
 @Component({
@@ -47,7 +49,7 @@ export class HomeComponent {
 
 
 
-    constructor(private readService: ReadService){}
+    constructor(private readService: ReadService, private dialog: MatDialog){}
 
     ngOnInit(){
         this.getAllOpSystem();
@@ -256,4 +258,43 @@ export class HomeComponent {
         }
         );
     }
+
+    //kártya funkciók
+    //SSD
+    addCartSSD(ssd: SSD) {
+      throw new Error('Method not implemented.');
+    }
+    checkSSD(ssd: SSD) {
+      const dialogConfig = new MatDialogConfig();
+        
+      dialogConfig.disableClose = true; //ha kikattintunk akkor nem fog bezárni
+      dialogConfig.autoFocus = true; //Az fromfield-re megy a fókusz
+      dialogConfig.data = ssd; // Adat átadása a dialógusnak
+
+
+      const dialogRef = this.dialog.open(SsdviewComponent, dialogConfig);
+
+    }
+    //RAM
+    addCartRam(ram: Ram) {
+      throw new Error('Method not implemented.');
+    }
+    checkRam(ram: Ram) {
+      throw new Error('Method not implemented.');
+    }
+    //Pendrive
+    addCartPendrive(pendrive: Pendrive) {
+      throw new Error('Method not implemented.');
+    }
+    checkPendrive(pendrive: Pendrive) {
+      throw new Error('Method not implemented.');
+    }
+    //Laptop
+    addCartLaptop(laptop: Laptop) {
+      throw new Error('Method not implemented.');
+    }
+    checkLaptop(laptop: Laptop) {
+      throw new Error('Method not implemented.');
+    }
+    
 }

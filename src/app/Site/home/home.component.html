@@ -26,14 +26,14 @@
             <span>{{ laptop.processor }}</span><br>
             <span>{{ laptop.ram }}</span><br>
             <span>{{ laptop.ssd }}</span><br>
-            <span>{{ getOpName(laptop.op_system_id) }}</span>
+            <span>{{ getOpName(laptop.op_system_id) }}</span><br>
             <span *ngIf="laptop.discount == 1; else regularPrice" style="text-decoration: line-through;">{{ laptop.price }} Ft</span><br>
             <ng-template #regularPrice>{{ laptop.price }} Ft</ng-template>
             <span *ngIf="laptop.discount == 1" class="discount-number">{{ laptop.discountprice }} Ft</span><br>
           </mat-card-content>
           <mat-card-actions>
-            <button class="kosar" mat-button>Kosárba</button>
-            <button mat-button>Megtekint</button>
+            <button class="kosar" mat-button (click)="addCartLaptop(laptop)">Kosárba</button>
+            <button mat-button (click)="checkLaptop(laptop)">Megtekint</button>
           </mat-card-actions>
         </mat-card>
       </div>
@@ -56,8 +56,8 @@
             <span *ngIf="s.discount == 1" class="discount-number">{{ s.discountprice }} Ft</span><br>
           </mat-card-content>
           <mat-card-actions>
-            <button class="kosar" mat-button>Kosárba</button>
-            <button mat-button>Megtekint</button>
+            <button class="kosar" mat-button (click)="addCartSSD(s)">Kosárba</button>
+            <button mat-button (click)="checkSSD(s)">Megtekint</button>
           </mat-card-actions>
         </mat-card>
       </div>
@@ -80,8 +80,8 @@
             <span *ngIf="r.discount == 1" class="discount-number">{{ r.discountprice }} Ft</span><br>
           </mat-card-content>
           <mat-card-actions>
-            <button class="kosar" mat-button>Kosárba</button>
-            <button mat-button>Megtekint</button>
+            <button class="kosar" mat-button (click)="addCartRam(r)">Kosárba</button>
+            <button mat-button (click)="checkRam(r)">Megtekint</button>
           </mat-card-actions>
         </mat-card>
       </div>
@@ -104,8 +104,8 @@
             <span *ngIf="p.discount == 1" class="discount-number">{{ p.discountprice }} Ft</span><br>
           </mat-card-content>
           <mat-card-actions>
-            <button class="kosar" mat-button>Kosárba</button>
-            <button mat-button>Megtekint</button>
+            <button class="kosar" mat-button (click)="addCartPendrive(p)">Kosárba</button>
+            <button mat-button (click)="checkPendrive(p)">Megtekint</button>
           </mat-card-actions>
         </mat-card>
       </div>

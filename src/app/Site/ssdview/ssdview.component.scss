@@ -1,0 +1,31 @@
+#title{
+    padding-top: 5px;
+    font-size: 40px;
+}
+#data{
+    font-size: 25px;
+
+}
+.line{
+    height: 5px;
+    background-color: black;
+}
+//slideshow
+#slideshow {
+    text-align: center;
+}
+
+#slideshow img {
+    max-width: 40%;
+    height: auto;
+}
+
+button {
+    display: inline-block;
+    margin: 5px;
+}
+
+#paginator{
+    justify-content: center;
+    text-align: center;
+}

@@ -1,0 +1,19 @@
+<h2 mat-dialog-title id="title">{{ ssd.name }}</h2>
+<div id="slideshow">
+    <img [src]="assetUrl + imagesSsd[i]" alt="ssd">
+</div>
+
+<span id="paginator">
+    <button *ngIf="imagesSsd.length == 1" (click)="prev()" mat-button>Prev</button>
+    <button *ngIf="imagesSsd.length == 1" (click)="next()" mat-button>Next</button>
+</span>
+<h3 id="data">Adatok</h3>
+<div class="line"></div>
+<span>Sku: {{ ssd.sku }}</span>
+<span>Tárhely: {{ ssd.storage }}</span>
+<span>Jótállás: {{ ssd.warranty }}</span>
+
+
+
+<button></button>
+<button (click)="close()">Bezár</button>
