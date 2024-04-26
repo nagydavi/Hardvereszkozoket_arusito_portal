@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { MenuComponent } from "../menu/menu.component";
 import { FooterComponent } from "../footer/footer.component";
-import { MatCard, MatCardActions, MatCardContent } from '@angular/material/card';
+import { MatCard, MatCardActions, MatCardContent, MatCardHeader } from '@angular/material/card';
 import { Laptop } from '../../Models/laptop';
 import { ReadService } from '../read.service';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import { Image } from '../../Models/image';
-import { map } from 'rxjs';
-import { LaptopType } from '../../Models/laptop_type';
 import { OpSystem } from '../../Models/opsys';
 import { MatButton } from '@angular/material/button';
 import { SSD } from '../../Models/ssd';
@@ -28,10 +26,12 @@ import { Pendrive } from '../../Models/pendrive';
         CommonModule,
         MatCardContent,
         MatCardActions,
-        MatButton
+        MatButton,
+        MatCardHeader
     ]
 })
 export class HomeComponent {
+
 
     assetUrl = environment.apiUrl + 'assets/';
 
@@ -150,7 +150,6 @@ export class HomeComponent {
             });
             if(firstImageChecker){
               s.main_picture = 'notfound.webp'
-              console.log('jártam itt');
             }
             firstImageChecker = true;
         })
@@ -193,7 +192,6 @@ export class HomeComponent {
             });
             if(firstImageChecker){
               r.main_picture = 'notfound.webp'
-              console.log('jártam itt');
             }
             firstImageChecker = true;
         })
@@ -258,6 +256,4 @@ export class HomeComponent {
         }
         );
     }
-
-    
 }

@@ -62,7 +62,7 @@ export class RamComponent {
         this.createRam.name = '';
         this.createRam.sku = '';
         this.createRam.warranty = '';
-        this.createRam.discount = false;
+        this.createRam.discount = 0;
         this.createRam.storage = 0;
         this.createRam.price = 0;
         this.createRam.discountprice = 0;
@@ -79,7 +79,7 @@ export class RamComponent {
         this.editRamData.name = '';
         this.editRamData.sku = '';
         this.editRamData.warranty = '';
-        this.editRamData.discount = false;
+        this.editRamData.discount = 0;
         this.editRamData.storage = 0;
         this.editRamData.price = 0;
         this.editRamData.discountprice = 0;

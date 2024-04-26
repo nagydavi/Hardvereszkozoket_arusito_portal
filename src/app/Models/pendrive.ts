@@ -3,7 +3,7 @@ export class Pendrive {
     name: string = '';
     sku: string = '';
     warranty: string = '';
-    discount: boolean = false;
+    discount: number = 0;
     storage: number = 0;
     writespeed: string = '';
     discountprice: number = 0;

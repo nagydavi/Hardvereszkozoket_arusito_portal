@@ -15,7 +15,7 @@ export class Laptop{
     weight: number = 0;
     keyboard: string = '';
     laptop_type_id?: number;
-    discount = false;
+    discount: number = 0;
     discountprice: number = 0;
 
 

@@ -71,7 +71,7 @@ export class SsdComponent {
             this.createSSD.name = '';
             this.createSSD.sku = '';
             this.createSSD.warranty = '';
-            this.createSSD.discount = false;
+            this.createSSD.discount = 0;
             this.createSSD.storage = 0;
             this.createSSD.price = 0;
             this.createSSD.discountprice = 0;
@@ -87,7 +87,7 @@ export class SsdComponent {
             this.editSSDData.name = '';
             this.editSSDData.sku = '';
             this.editSSDData.warranty = '';
-            this.editSSDData.discount = false;
+            this.editSSDData.discount = 0;
             this.editSSDData.storage = 0;
             this.editSSDData.price = 0;
             this.editSSDData.discountprice = 0;

@@ -110,7 +110,7 @@ export class LaptopsComponent implements OnInit {
         this.createLaptop.weight = 0;
         this.createLaptop.keyboard = '';
         this.createLaptop.laptop_type_id = 0;
-        this.createLaptop.discount = false;
+        this.createLaptop.discount = 0;
         this.createLaptop.discountprice = 0;
   
         this.getAll();
@@ -135,7 +135,7 @@ export class LaptopsComponent implements OnInit {
         this.editLaptopData.weight = 0;
         this.editLaptopData.keyboard = '';
         this.editLaptopData.laptop_type_id = 0;
-        this.editLaptopData.discount = false;
+        this.editLaptopData.discount = 0;
         this.editLaptopData.discountprice = 0;
 
 

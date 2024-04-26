@@ -44,6 +44,16 @@
 }
 
 //Kártya
+.discount-header{
+    background-color: red;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    justify-content: center;
+}
+.discount-title{
+    padding-bottom: 10px;
+}
 .carddiv{
     display: flex;
     justify-content: center; 
@@ -74,4 +84,7 @@ mat-card-actions {
 .kosar{
     background-color: green; /* kék háttér */
     color: white; 
+}
+.discount-number{
+    color: red;
 }

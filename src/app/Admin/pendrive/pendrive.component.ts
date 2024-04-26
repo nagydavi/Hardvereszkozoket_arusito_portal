@@ -63,7 +63,7 @@ export class PendriveComponent {
         this.createPendrive.name = '';
         this.createPendrive.sku = '';
         this.createPendrive.warranty = '';
-        this.createPendrive.discount = false;
+        this.createPendrive.discount = 0;
         this.createPendrive.storage = 0;
         this.createPendrive.writespeed = '';
         this.createPendrive.price = 0;
@@ -81,7 +81,7 @@ export class PendriveComponent {
         this.editPendriveData.name = '';
         this.editPendriveData.sku = '';
         this.editPendriveData.warranty = '';
-        this.editPendriveData.discount = false;
+        this.editPendriveData.discount = 0;
         this.editPendriveData.storage = 0;
         this.editPendriveData.writespeed = '';
         this.editPendriveData.price = 0;

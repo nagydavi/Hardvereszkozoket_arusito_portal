@@ -16,6 +16,9 @@
   <div class="carddiv">
       <div class="card responsive-grid">
         <mat-card class="card" *ngFor="let laptop of laptops">
+          <mat-card-header *ngIf="laptop.discount == 1" class="discount-header">
+            <span class="discount-title">Akció</span>
+          </mat-card-header>
           <img [src]="assetUrl+laptop.main_picture" alt="Laptop" >
           <mat-card-content style="text-align: center;">
             <span style="font-weight: bold;">{{ laptop.name }}</span><br>
@@ -23,8 +26,10 @@
             <span>{{ laptop.processor }}</span><br>
             <span>{{ laptop.ram }}</span><br>
             <span>{{ laptop.ssd }}</span><br>
-            <span>{{ laptop.price }} Ft</span><br>
             <span>{{ getOpName(laptop.op_system_id) }}</span>
+            <span *ngIf="laptop.discount == 1; else regularPrice" style="text-decoration: line-through;">{{ laptop.price }} Ft</span><br>
+            <ng-template #regularPrice>{{ laptop.price }} Ft</ng-template>
+            <span *ngIf="laptop.discount == 1" class="discount-number">{{ laptop.discountprice }} Ft</span><br>
           </mat-card-content>
           <mat-card-actions>
             <button class="kosar" mat-button>Kosárba</button>
@@ -39,11 +44,16 @@
   <div class="carddiv">
       <div class="card responsive-grid">
         <mat-card class="card" *ngFor="let s of ssd">
-          <img [src]="assetUrl+s.main_picture" alt="Laptop" >
+          <mat-card-header *ngIf="s.discount == 1" class="discount-header">
+            <span class="discount-title">Akció</span>
+          </mat-card-header>
+          <img [src]="assetUrl+s.main_picture" alt="SSD" >
           <mat-card-content style="text-align: center;">
             <span style="font-weight: bold;">{{ s.name }}</span><br>
             <span>{{ s.storage }} GB</span><br>
-            <span>{{ s.price }} Ft</span><br>
+            <span *ngIf="s.discount == 1; else regularPrice" style="text-decoration: line-through;">{{ s.price }} Ft</span><br>
+            <ng-template #regularPrice>{{ s.price }} Ft</ng-template>
+            <span *ngIf="s.discount == 1" class="discount-number">{{ s.discountprice }} Ft</span><br>
           </mat-card-content>
           <mat-card-actions>
             <button class="kosar" mat-button>Kosárba</button>
@@ -58,11 +68,16 @@
   <div class="carddiv">
       <div class="card responsive-grid">
         <mat-card class="card" *ngFor="let r of ram">
-          <img [src]="assetUrl+r.main_picture" alt="Laptop" >
+          <mat-card-header *ngIf="r.discount == 1" class="discount-header">
+            <span class="discount-title">Akció</span>
+          </mat-card-header>
+          <img [src]="assetUrl+r.main_picture" alt="Ram" >
           <mat-card-content style="text-align: center;">
             <span style="font-weight: bold;">{{ r.name }}</span><br>
             <span>{{ r.storage }} GB</span><br>
-            <span>{{ r.price }} Ft</span><br>
+            <span *ngIf="r.discount == 1; else regularPrice" style="text-decoration: line-through;">{{ r.price }} Ft</span><br>
+            <ng-template #regularPrice>{{ r.price }} Ft</ng-template>
+            <span *ngIf="r.discount == 1" class="discount-number">{{ r.discountprice }} Ft</span><br>
           </mat-card-content>
           <mat-card-actions>
             <button class="kosar" mat-button>Kosárba</button>
@@ -77,11 +92,16 @@
   <div class="carddiv">
       <div class="card responsive-grid">
         <mat-card class="card" *ngFor="let p of pendrive">
-          <img [src]="assetUrl+p.main_picture" alt="Laptop" >
+          <mat-card-header *ngIf="p.discount==1" class="discount-header">
+            <span class="discount-title">Akció</span>
+          </mat-card-header>
+          <img [src]="assetUrl+p.main_picture" alt="Pendrive" >
           <mat-card-content style="text-align: center;">
             <span style="font-weight: bold;">{{ p.name }}</span><br>
             <span>{{ p.storage }} GB</span><br>
-            <span>{{ p.price }} Ft</span><br>
+            <span *ngIf="p.discount == 1; else regularPrice" style="text-decoration: line-through;">{{ p.price }} Ft</span><br>
+            <ng-template #regularPrice>{{ p.price }} Ft</ng-template>
+            <span *ngIf="p.discount == 1" class="discount-number">{{ p.discountprice }} Ft</span><br>
           </mat-card-content>
           <mat-card-actions>
             <button class="kosar" mat-button>Kosárba</button>

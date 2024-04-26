@@ -3,7 +3,7 @@ export class SSD {
     name: string = '';
     sku: string = '';
     warranty: string = '';
-    discount: boolean = false;
+    discount: number = 0;
     storage: number = 0;
     price: number = 0;
     discountprice: number = 0;
