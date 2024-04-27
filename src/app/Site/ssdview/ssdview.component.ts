@@ -32,7 +32,7 @@ export class SsdviewComponent {
   ngOnInit(){
     this.getAllImageDB();
     this.getAllImage();
-}
+  }
 
   next(){
     this.i++;
@@ -72,15 +72,15 @@ export class SsdviewComponent {
             }
           });
         });
+        if(!(this.checkPic)){
+          this.imagesSsd.push('notfound.webp')
+      }
+      this.checkPic = false;
       },
       error => {
         console.error('Error fetching images:', error);
       }
     );
-    if(!(this.checkPic)){
-        this.imagesSsd.push('notfound.webp')
-    }
-    this.checkPic = false;
     }
   getLenght(): boolean {
     if(this.imagesSsd.length == 1){

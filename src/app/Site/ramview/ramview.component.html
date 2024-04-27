@@ -1,1 +1,22 @@
-<p>ramview works!</p>
+<h2 mat-dialog-title id="title">{{ ram.name }}</h2>
+<div id="slideshow">
+    <img [src]="assetUrl + imagesRam[i]" alt="ssd">
+</div>
+
+<span id="paginator">
+    <button *ngIf="getLenght()" (click)="prev()" mat-button>Prev</button>
+    <button *ngIf="getLenght()" (click)="next()" mat-button>Next</button>
+</span>
+<h3 id="data">Adatok</h3>
+<div class="line"></div>
+<span class="datas">Sku: {{ ram.sku }}</span>
+<span class="datas">Tárhely: {{ ram.storage }} GB</span>
+<span class="datas">Jótállás: {{ ram.warranty }}</span>
+<span *ngIf="ram.discount == 0" class="datas">Ár: {{ ram.price }} Ft</span>
+<span *ngIf="ram.discount == 1" class="discount">Akciós ár: {{ ram.discountprice }} Ft</span>
+
+
+
+
+<button class="kosar" mat-button (click)="addToCart(ram)">Kosárba</button>
+<button (click)="close()" mat-button>Bezár</button>

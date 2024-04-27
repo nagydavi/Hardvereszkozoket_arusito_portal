@@ -14,6 +14,9 @@ import { Ram } from '../../Models/ram';
 import { Pendrive } from '../../Models/pendrive';
 import { SsdviewComponent } from '../ssdview/ssdview.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { RamviewComponent } from '../ramview/ramview.component';
+import { PendriveviewComponent } from '../pendriveview/pendriveview.component';
+import { LaptopviewComponent } from '../laptopview/laptopview.component';
 
 
 @Component({
@@ -280,21 +283,42 @@ export class HomeComponent {
       throw new Error('Method not implemented.');
     }
     checkRam(ram: Ram) {
-      throw new Error('Method not implemented.');
+      const dialogConfig = new MatDialogConfig();
+        
+      dialogConfig.disableClose = true; //ha kikattintunk akkor nem fog bezárni
+      dialogConfig.autoFocus = true; //Az fromfield-re megy a fókusz
+      dialogConfig.data = ram; // Adat átadása a dialógusnak
+
+
+      const dialogRef = this.dialog.open(RamviewComponent, dialogConfig);
     }
     //Pendrive
     addCartPendrive(pendrive: Pendrive) {
       throw new Error('Method not implemented.');
     }
     checkPendrive(pendrive: Pendrive) {
-      throw new Error('Method not implemented.');
+      const dialogConfig = new MatDialogConfig();
+        
+      dialogConfig.disableClose = true; //ha kikattintunk akkor nem fog bezárni
+      dialogConfig.autoFocus = true; //Az fromfield-re megy a fókusz
+      dialogConfig.data = pendrive; // Adat átadása a dialógusnak
+
+
+      const dialogRef = this.dialog.open(PendriveviewComponent, dialogConfig);
     }
     //Laptop
     addCartLaptop(laptop: Laptop) {
       throw new Error('Method not implemented.');
     }
     checkLaptop(laptop: Laptop) {
-      throw new Error('Method not implemented.');
+      const dialogConfig = new MatDialogConfig();
+        
+      dialogConfig.disableClose = true; //ha kikattintunk akkor nem fog bezárni
+      dialogConfig.autoFocus = true; //Az fromfield-re megy a fókusz
+      dialogConfig.data = laptop; // Adat átadása a dialógusnak
+
+
+      const dialogRef = this.dialog.open(LaptopviewComponent, dialogConfig);
     }
     
 }
