@@ -4,19 +4,22 @@ import { ReadService } from '../read.service';
 import { Image } from '../../Models/image';
 import { environment } from '../../../environments/environment';
 import { MatButton } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+import { SSD } from '../../Models/ssd';
 
 @Component({
   selector: 'app-ssdview',
   standalone: true,
   imports: [
-    MatButton
+    MatButton,
+    CommonModule
   ],
   templateUrl: './ssdview.component.html',
   styleUrl: './ssdview.component.scss'
 })
 export class SsdviewComponent {
 
-
+  checkPic: boolean = false;
   assetUrl = environment.apiUrl + 'assets/';
   imageDB: Image[] = [];
   imagesSsd:string [] = [];
@@ -65,6 +68,7 @@ export class SsdviewComponent {
           images.forEach((i: string)=>{
             if(im.type === 'ssd' && im.pic_name === i && this.ssd.id === im.product_id){
               this.imagesSsd.push(i);
+              this.checkPic = true;
             }
           });
         });
@@ -72,9 +76,21 @@ export class SsdviewComponent {
       error => {
         console.error('Error fetching images:', error);
       }
-      
     );
+    if(!(this.checkPic)){
+        this.imagesSsd.push('notfound.webp')
     }
-  
+    this.checkPic = false;
+    }
+  getLenght(): boolean {
+    if(this.imagesSsd.length == 1){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  addToCart(ssd: SSD) {
+    throw new Error('Method not implemented.');
+  }
 
 }

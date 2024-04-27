@@ -4,16 +4,19 @@
 </div>
 
 <span id="paginator">
-    <button *ngIf="imagesSsd.length == 1" (click)="prev()" mat-button>Prev</button>
-    <button *ngIf="imagesSsd.length == 1" (click)="next()" mat-button>Next</button>
+    <button *ngIf="getLenght()" (click)="prev()" mat-button>Prev</button>
+    <button *ngIf="getLenght()" (click)="next()" mat-button>Next</button>
 </span>
 <h3 id="data">Adatok</h3>
 <div class="line"></div>
-<span>Sku: {{ ssd.sku }}</span>
-<span>Tárhely: {{ ssd.storage }}</span>
-<span>Jótállás: {{ ssd.warranty }}</span>
+<span class="datas">Sku: {{ ssd.sku }}</span>
+<span class="datas">Tárhely: {{ ssd.storage }} GB</span>
+<span class="datas">Jótállás: {{ ssd.warranty }}</span>
+<span *ngIf="ssd.discount == 0" class="datas">Ár: {{ ssd.price }} Ft</span>
+<span *ngIf="ssd.discount == 1" class="discount">Akciós ár: {{ ssd.discountprice }} Ft</span>
 
 
 
-<button></button>
-<button (click)="close()">Bezár</button>
+
+<button class="kosar" mat-button (click)="addToCart(ssd)">Kosárba</button>
+<button (click)="close()" mat-button>Bezár</button>
