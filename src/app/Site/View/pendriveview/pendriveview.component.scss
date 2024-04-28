@@ -1,0 +1,44 @@
+#title{
+    padding-top: 5px;
+    font-size: 40px;
+}
+#data{
+    font-size: 25px;
+
+}
+.datas{
+    font-size: 20px;
+    padding: 5px;
+}
+.discount{
+    font-size: 20px;
+    padding: 5px;
+    color: red;
+}
+.line{
+    height: 5px;
+    background-color: black;
+}
+.kosar{
+    background-color: green; 
+    color: white; 
+}
+//slideshow
+#slideshow {
+    text-align: center;
+}
+
+#slideshow img {
+    max-width: 40%;
+    height: auto;
+}
+
+button {
+    display: inline-block;
+    margin: 5px;
+}
+
+#paginator{
+    justify-content: center;
+    text-align: center;
+}

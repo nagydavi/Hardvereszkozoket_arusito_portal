@@ -9,7 +9,7 @@ export class Laptop{
     ram: string = '';
     ssd: string = '';
     op_system_id?: number;
-    price?: number;
+    price: number = 0;
     warranty: string = '';
     battery: string = '';
     weight: number = 0;

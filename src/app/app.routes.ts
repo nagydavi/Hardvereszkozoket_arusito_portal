@@ -27,6 +27,8 @@ export const routes: Routes = [
     {path: 'admin/ssd', loadChildren: () => import ('./Admin/ssd/ssd.module').then(m=>m.SsdModule),canActivate: [authGuard] },
     {path: 'admin/ram', loadChildren: () => import ('./Admin/ram/ram.module').then(m=>m.RamModule),canActivate: [authGuard] },
     {path: 'admin/pendrive', loadChildren: () => import ('./Admin/pendrive/pendrive.module').then(m=>m.PendriveModule),canActivate: [authGuard] },
+    {path: 'site/cart', loadChildren: () => import ('./Site/cart/cart.module').then(m=>m.CartModule)},
+
     {path: '', loadChildren: () => import ('./Site/home/home.module').then(m=>m.HomeModule)},
 
 

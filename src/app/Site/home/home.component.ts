@@ -12,11 +12,12 @@ import { MatButton } from '@angular/material/button';
 import { SSD } from '../../Models/ssd';
 import { Ram } from '../../Models/ram';
 import { Pendrive } from '../../Models/pendrive';
-import { SsdviewComponent } from '../ssdview/ssdview.component';
+import { SsdviewComponent } from '../View/ssdview/ssdview.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { RamviewComponent } from '../ramview/ramview.component';
-import { PendriveviewComponent } from '../pendriveview/pendriveview.component';
-import { LaptopviewComponent } from '../laptopview/laptopview.component';
+import { RamviewComponent } from '../View/ramview/ramview.component';
+import { PendriveviewComponent } from '../View/pendriveview/pendriveview.component';
+import { LaptopviewComponent } from '../View/laptopview/laptopview.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -49,10 +50,16 @@ export class HomeComponent {
     ram: Ram[] = [];
     pendrive: Pendrive[] = [];
 
+    storedRam: Ram[] = [];
+    storedPendrive: Pendrive[] = [];
+    storedSsd: SSD[] = [];
+    storedLaptop: Laptop[] = [];
 
 
 
-    constructor(private readService: ReadService, private dialog: MatDialog){}
+
+
+    constructor(private readService: ReadService, private dialog: MatDialog,private snackBar: MatSnackBar){}
 
     ngOnInit(){
         this.getAllOpSystem();
@@ -265,13 +272,25 @@ export class HomeComponent {
     //kártya funkciók
     //SSD
     addCartSSD(ssd: SSD) {
-      throw new Error('Method not implemented.');
+      let storedData = localStorage.getItem("ssd");
+      if (storedData) {
+          this.storedSsd = JSON.parse(storedData);
+          this.storedSsd.push(ssd);          
+      } else {
+          this.storedSsd = [ssd]; //Azért így helyezem el benne, hogy ha már van több akkor tudjam pusholni
+      }
+      localStorage.setItem("ssd", JSON.stringify(this.storedSsd));
+      this.snackBar.open('Termék kosárba helyezve', 'Értem', {
+        duration: 3000, // Megjelenési időtartam millisecondban (3 másodperc)
+        verticalPosition: 'bottom', // Elhelyezkedés: alul
+        horizontalPosition: 'center', // Elhelyezkedés: középen
+      });
     }
     checkSSD(ssd: SSD) {
       const dialogConfig = new MatDialogConfig();
         
       dialogConfig.disableClose = true; //ha kikattintunk akkor nem fog bezárni
-      dialogConfig.autoFocus = true; //Az fromfield-re megy a fókusz
+      dialogConfig.autoFocus = true; //A fromfield-re megy a fókusz
       dialogConfig.data = ssd; // Adat átadása a dialógusnak
 
 
@@ -280,7 +299,19 @@ export class HomeComponent {
     }
     //RAM
     addCartRam(ram: Ram) {
-      throw new Error('Method not implemented.');
+      let storedData = localStorage.getItem("ram");
+      if (storedData) {
+          this.storedRam = JSON.parse(storedData);
+          this.storedRam.push(ram);          
+      } else {
+          this.storedRam = [ram]; //Azért így helyezem el benne, hogy ha már van több akkor tudjam pusholni
+      }
+      localStorage.setItem("ram", JSON.stringify(this.storedRam));
+      this.snackBar.open('Termék kosárba helyezve', 'Értem', {
+        duration: 3000, // Megjelenési időtartam millisecondban (3 másodperc)
+        verticalPosition: 'bottom', // Elhelyezkedés: alul
+        horizontalPosition: 'center', // Elhelyezkedés: középen
+      });
     }
     checkRam(ram: Ram) {
       const dialogConfig = new MatDialogConfig();
@@ -294,7 +325,19 @@ export class HomeComponent {
     }
     //Pendrive
     addCartPendrive(pendrive: Pendrive) {
-      throw new Error('Method not implemented.');
+      let storedData = localStorage.getItem("pendrive");
+      if (storedData) {
+          this.storedPendrive = JSON.parse(storedData);
+          this.storedPendrive.push(pendrive);          
+      } else {
+          this.storedPendrive = [pendrive]; //Azért így helyezem el benne, hogy ha már van több akkor tudjam pusholni
+      }
+      localStorage.setItem("pendrive", JSON.stringify(this.storedPendrive));
+      this.snackBar.open('Termék kosárba helyezve', 'Értem', {
+        duration: 3000, // Megjelenési időtartam millisecondban (3 másodperc)
+        verticalPosition: 'bottom', // Elhelyezkedés: alul
+        horizontalPosition: 'center', // Elhelyezkedés: középen
+      });
     }
     checkPendrive(pendrive: Pendrive) {
       const dialogConfig = new MatDialogConfig();
@@ -308,7 +351,19 @@ export class HomeComponent {
     }
     //Laptop
     addCartLaptop(laptop: Laptop) {
-      throw new Error('Method not implemented.');
+      let storedData = localStorage.getItem("laptop");
+      if (storedData) {
+          this.storedLaptop = JSON.parse(storedData);
+          this.storedLaptop.push(laptop);          
+      } else {
+          this.storedLaptop = [laptop]; //Azért így helyezem el benne, hogy ha már van több akkor tudjam pusholni
+      }
+      localStorage.setItem("laptop", JSON.stringify(this.storedLaptop));
+      this.snackBar.open('Termék kosárba helyezve', 'Értem', {
+        duration: 3000, // Megjelenési időtartam millisecondban (3 másodperc)
+        verticalPosition: 'bottom', // Elhelyezkedés: alul
+        horizontalPosition: 'center', // Elhelyezkedés: középen
+      });
     }
     checkLaptop(laptop: Laptop) {
       const dialogConfig = new MatDialogConfig();

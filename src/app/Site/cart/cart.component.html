@@ -1,0 +1,80 @@
+<app-menusite id="menu"></app-menusite>
+<div class="center">
+    <div>
+        <h2 *ngIf="isLaptopInCart()">Laptop</h2>
+        <table class="cart-list">
+            <tbody>
+              <tr *ngFor="let laptop of cartLaptops">
+                <td>{{ laptop.name }}</td>
+                <td>{{ laptop.processor }}</td>
+                <td>{{ getOpName(laptop.op_system_id) }}</td>
+                <td>{{ laptop.ssd }}</td>
+                <td>{{ laptop.ram }}</td>
+                <td>{{ laptop.grafic_card }}</td>
+                <td *ngIf="laptop.discount == 0">{{ laptop.price }} Ft</td>
+                <td *ngIf="laptop.discount == 1" class="discount">{{ laptop.discountprice }} Ft</td>
+                <td><button mat-icon-button (click)="deleteLaptopFromCart(laptop)" class="delete">
+                    <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        <mat-divider *ngIf="isLaptopInCart()"></mat-divider>
+        <h2 *ngIf="isSsdInCart()">SSD</h2>
+        <table class="cart-list">
+            <tbody>
+              <tr *ngFor="let ssd of cartSsd">
+                <td>{{ ssd.name }}</td>
+                <td>{{ ssd.storage }}</td>
+                <td *ngIf="ssd.discount == 0">{{ ssd.price }} Ft</td>
+                <td *ngIf="ssd.discount == 1" class="discount">{{ ssd.discountprice }} Ft</td>
+                <td><button mat-icon-button (click)="deleteSsdFromCart(ssd)" class="delete">
+                    <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+        <mat-divider *ngIf="isSsdInCart()"></mat-divider>
+        <h2 *ngIf="isRamInCart()">RAM</h2>
+        <table class="cart-list">
+            <tbody>
+              <tr *ngFor="let ram of cartRam">
+                <td>{{ ram.name }}</td>
+                <td>{{ ram.storage }}</td>
+                <td *ngIf="ram.discount == 0">{{ ram.price }} Ft</td>
+                <td *ngIf="ram.discount == 1" class="discount">{{ ram.discountprice }} Ft</td>
+                <td><button mat-icon-button (click)="deleteRamFromCart(ram)" class="delete">
+                    <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+        <mat-divider *ngIf="isRamInCart()"></mat-divider>
+        <h2 *ngIf="isPendriveInCart()">Pendrive</h2>
+        <table class="cart-list">
+            <tbody>
+            <tr *ngFor="let pendrive of cartPendrive">
+              <td>{{ pendrive.name }}</td>
+              <td>{{ pendrive.storage }}</td>
+              <td *ngIf="pendrive.discount == 0">{{ pendrive.price }} Ft</td>
+                <td *ngIf="pendrive.discount == 1" class="discount">{{ pendrive.discountprice }} Ft</td>
+                <td><button mat-icon-button (click)="deletePendriveFromCart(pendrive)" class="delete">
+                    <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+          </tbody>
+        </table><br>
+        <p id="to-pay">Fizetendő összeg: {{getAllPrice()}} Ft</p>
+        <div class="center">
+            <button class="buy-button" mat-button >Megrendelés</button>
+        </div>
+        <div class="center">
+            <p>Boltunkban csak utánvéttel lehet fizetni!</p>
+        </div>
+    </div>
+</div>
+<app-footer id="footer"></app-footer>

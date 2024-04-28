@@ -1,0 +1,27 @@
+#footer{
+    position:fixed;
+    bottom:0px;
+    width:100%;
+}
+.delete{
+    background-color: transparent; /* Háttérszín eltávolítása */
+    border: none; /* Keret eltávolítása */ 
+    color: red;
+}
+.discount{
+    color: red;
+}
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.buy-button{
+    background-color: green;
+    font-size: 20px;
+}
+#to-pay{
+    font-size: 26px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}

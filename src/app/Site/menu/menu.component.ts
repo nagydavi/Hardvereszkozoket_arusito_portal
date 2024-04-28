@@ -7,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 
 
@@ -22,18 +24,18 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     MatButtonModule,
     FlexLayoutModule,
-    RouterModule
+    RouterModule,
+    MatBadgeModule
   ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss'
 })
 export class MenuComponent {
+
 chatDialog() {
 throw new Error('Method not implemented.');
 }
-shopCartDialog() {
-throw new Error('Method not implemented.');
-}
+
 
 
 
@@ -47,15 +49,34 @@ throw new Error('Method not implemented.');
   close(sidenav: MatSidenav){
     sidenav.close();
   }
-  isUsersVisible(){
-    const localData = localStorage.getItem('user');
-    if(localData){
-      const user = JSON.parse(localData);
-      if(user['type_id'] === '1'){
-        return false;
-      }
+
+  getCartNumber(): string{
+    let storedDataLaptop = localStorage.getItem("laptop");
+    let storedDataSsd = localStorage.getItem("ssd");
+    let storedDataRam = localStorage.getItem("ram");
+    let storedDataPendrive = localStorage.getItem("pendrive");
+    let productNumber = 0;
+
+    if (storedDataLaptop) {
+      let laptopData = JSON.parse(storedDataLaptop);
+      productNumber += Array.isArray(laptopData) ? laptopData.length : 0;
     }
-    return true;
-  }
-  
+    if (storedDataSsd) {
+      let ssdData = JSON.parse(storedDataSsd);
+      productNumber += Array.isArray(ssdData) ? ssdData.length : 0;
+    }
+    if (storedDataRam) {
+      let ramData = JSON.parse(storedDataRam);
+      productNumber += Array.isArray(ramData) ? ramData.length : 0;
+    }
+    if (storedDataPendrive) {
+      let pendriveData = JSON.parse(storedDataPendrive);
+      productNumber += Array.isArray(pendriveData) ? pendriveData.length : 0;
+    }
+
+    if(productNumber != 0){
+      return productNumber.toString();
+    }
+    return "";
+    }
 }
