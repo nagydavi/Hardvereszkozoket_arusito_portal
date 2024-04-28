@@ -122,7 +122,7 @@ getAllType() {
       this.laptopType = res;
     },
     (error) => {
-      console.error('Hiba történt a Role-ok lekérésekor:', error);
+      console.error('Hiba történt a típusok lekérésekor:', error);
   }
   );
 }
