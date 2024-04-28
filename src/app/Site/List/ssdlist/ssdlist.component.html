@@ -1,1 +1,30 @@
-<p>ssdlist works!</p>
+<app-menusite id="menu"></app-menusite>
+<div class="carddiv">
+    <div class="card responsive-grid">
+      <mat-card class="card" *ngFor="let s of ssd">
+        <mat-card-header *ngIf="s.discount == 1" class="discount-header">
+          <span class="discount-title">Akció</span>
+        </mat-card-header>
+        <img [src]="assetUrl+s.main_picture" alt="SSD" >
+        <mat-card-content style="text-align: center;">
+          <span style="font-weight: bold;">{{ s.name }}</span><br>
+          <span>{{ s.storage }} GB</span><br>
+          <span *ngIf="s.discount == 1; else regularPrice" style="text-decoration: line-through;">{{ s.price }} Ft</span><br>
+          <ng-template #regularPrice>{{ s.price }} Ft</ng-template>
+          <span *ngIf="s.discount == 1" class="discount-number">{{ s.discountprice }} Ft</span><br>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="kosar" mat-button (click)="addCartSSD(s)">Kosárba</button>
+          <button mat-button (click)="checkSSD(s)">Megtekint</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+</div>
+<mat-paginator [length]="this.ssd.length"
+[pageSize]="8"
+[pageSizeOptions]="[8,12,16]"
+(page)="OnPageChange($event)">
+
+
+</mat-paginator>
+<app-footer id="footer"></app-footer>

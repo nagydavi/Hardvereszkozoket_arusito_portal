@@ -83,7 +83,6 @@ export class EditComponent {
 
 }
   ngOnInit(): void {
-    console.log(this.ssd);
     this.getAllImages();
     this.getAllImageDB();
     this.form = this.formBuilder.group({

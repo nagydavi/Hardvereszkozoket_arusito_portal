@@ -29,6 +29,8 @@ export const routes: Routes = [
     {path: 'admin/pendrive', loadChildren: () => import ('./Admin/pendrive/pendrive.module').then(m=>m.PendriveModule),canActivate: [authGuard] },
     {path: 'site/cart', loadChildren: () => import ('./Site/cart/cart.module').then(m=>m.CartModule)},
     {path: 'site/laptops', loadChildren: () => import ('./Site/List/laptoplist/laptoplist.module').then(m=>m.LaptoplistModule)},
+    {path: 'site/ssd', loadChildren: () => import ('./Site/List/ssdlist/ssdlist.module').then(m=>m.SsdlistModule)},
+
 
 
     {path: '', loadChildren: () => import ('./Site/home/home.module').then(m=>m.HomeModule)},

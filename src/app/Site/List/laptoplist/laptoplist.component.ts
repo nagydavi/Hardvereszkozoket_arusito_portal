@@ -13,7 +13,6 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { LaptopviewComponent } from '../../View/laptopview/laptopview.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { every } from 'rxjs';
 
 @Component({
     selector: 'app-laptoplist',
