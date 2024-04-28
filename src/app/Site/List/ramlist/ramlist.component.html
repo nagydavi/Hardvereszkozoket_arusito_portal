@@ -1,0 +1,30 @@
+<app-menusite id="menu"></app-menusite>
+<div class="carddiv">
+    <div class="card responsive-grid">
+      <mat-card class="card" *ngFor="let r of ramSlice">
+        <mat-card-header *ngIf="r.discount == 1" class="discount-header">
+          <span class="discount-title">Akció</span>
+        </mat-card-header>
+        <img [src]="assetUrl+r.main_picture" alt="Ram" >
+        <mat-card-content style="text-align: center;">
+          <span style="font-weight: bold;">{{ r.name }}</span><br>
+          <span>{{ r.storage }} GB</span><br>
+          <span *ngIf="r.discount == 1; else regularPrice" style="text-decoration: line-through;">{{ r.price }} Ft</span><br>
+          <ng-template #regularPrice>{{ r.price }} Ft</ng-template>
+          <span *ngIf="r.discount == 1" class="discount-number">{{ r.discountprice }} Ft</span><br>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="kosar" mat-button (click)="addCartRam(r)">Kosárba</button>
+          <button mat-button (click)="checkRam(r)">Megtekint</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+</div> 
+  <mat-paginator [length]="this.ram.length"
+                 [pageSize]="8"
+                 [pageSizeOptions]="[8,12,16]"
+                 (page)="OnPageChange($event)">
+
+
+  </mat-paginator>
+<app-footer id="footer"></app-footer>

@@ -30,6 +30,8 @@ export const routes: Routes = [
     {path: 'site/cart', loadChildren: () => import ('./Site/cart/cart.module').then(m=>m.CartModule)},
     {path: 'site/laptops', loadChildren: () => import ('./Site/List/laptoplist/laptoplist.module').then(m=>m.LaptoplistModule)},
     {path: 'site/ssd', loadChildren: () => import ('./Site/List/ssdlist/ssdlist.module').then(m=>m.SsdlistModule)},
+    {path: 'site/ram', loadChildren: () => import ('./Site/List/ramlist/ramlist.module').then(m=>m.RamlistModule)},
+
 
 
 

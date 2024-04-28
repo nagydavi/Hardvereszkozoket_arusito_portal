@@ -1,0 +1,51 @@
+#footer{
+    position: fixed;
+    bottom:0px;
+    width:100%;
+    margin-top: 30px;
+}
+//Kártya
+.discount-header{
+    background-color: red;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    justify-content: center;
+}
+.discount-title{
+    padding-bottom: 10px;
+}
+.carddiv{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.card{
+    padding: 24px;
+    display: flex;
+    justify-content: center; /* Kártyák középre igazítása */
+}
+image{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;//tartja a képarányt
+}
+.responsive-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px ,1fr));
+    gap: 24px
+
+}
+mat-card-actions {
+    margin-top: auto; /* A gombok az alsó részen lesznek, a tartalom fölött */
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+  }
+.kosar{
+    background-color: green; 
+    color: white; 
+}
+.discount-number{
+    color: red;
+}
