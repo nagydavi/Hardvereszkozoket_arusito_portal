@@ -3,12 +3,14 @@
     color: white;
     padding: 20px;
     text-align: right;
+    height: 1px;
 }
 
 .footer-content {
     display: flex;
     align-items: center;
     justify-content: flex-end; /* Jobbra zárás */
+    height: 1px;
 }
 
 .footer-content a {
