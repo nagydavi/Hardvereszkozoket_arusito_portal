@@ -7,7 +7,6 @@ import { ReadService } from '../../read.service';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../environments/environment';
 import { Image } from '../../../Models/image';
-import { OpSystem } from '../../../Models/opsys';
 import { MatButton } from '@angular/material/button';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -124,7 +123,7 @@ export class SsdlistComponent {
         endIndex = this.ssd.length;
     }
     this.ssdSlice = this.ssd.slice(startIndex,endIndex)
-}
+  }
 
 
 }

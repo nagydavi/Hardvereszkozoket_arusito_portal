@@ -31,6 +31,8 @@ export const routes: Routes = [
     {path: 'site/laptops', loadChildren: () => import ('./Site/List/laptoplist/laptoplist.module').then(m=>m.LaptoplistModule)},
     {path: 'site/ssd', loadChildren: () => import ('./Site/List/ssdlist/ssdlist.module').then(m=>m.SsdlistModule)},
     {path: 'site/ram', loadChildren: () => import ('./Site/List/ramlist/ramlist.module').then(m=>m.RamlistModule)},
+    {path: 'site/pendrive', loadChildren: () => import ('./Site/List/pendrivelist/pendrivelist.module').then(m=>m.PendrivelistModule)},
+
 
 
 
