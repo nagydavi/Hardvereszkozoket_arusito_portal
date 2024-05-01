@@ -13,6 +13,13 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { RamviewComponent } from '../../View/ramview/ramview.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-ramlist',
   standalone: true,
@@ -25,7 +32,13 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
         MatCardActions,
         MatButton,
         MatCardHeader,
-        MatPaginator
+        MatPaginator,
+        MatExpansionModule,
+        MatInputModule,
+        MatSlideToggleModule,
+        MatFormFieldModule,
+        MatIconModule,
+        FormsModule
   ],
   templateUrl: './ramlist.component.html',
   styleUrl: './ramlist.component.scss'
@@ -41,6 +54,9 @@ export class RamlistComponent {
   storedRam: Ram[] = [];
   ramSlice: Ram[] = [];
 
+  searchName: any;
+  isOnSale: any;
+  searchStorage: any;
 
 
 
@@ -135,5 +151,25 @@ export class RamlistComponent {
     }
     this.ramSlice = this.ram.slice(startIndex,endIndex)
   }
+  search() {
+    this.ramSlice = this.ram.slice(0,8);
+    if (this.searchName) { 
+      this.ramSlice = this.ramSlice.filter(ram => ram.name.toLowerCase().includes(this.searchName.toLowerCase()));
+    }
+    if (this.isOnSale) { 
+      this.ramSlice = this.ramSlice.filter(ram => ram.discount == 1);
+    }
+    if (this.searchStorage) { 
+      this.ramSlice = this.ramSlice.filter(ram => ram.storage >= this.searchStorage);
+    }
+
+
+  }
+  delete() {
+    this.isOnSale = false;
+    this.searchName = '';
+    this.searchStorage = null;
+    this.ramSlice = this.ram.slice(0,8);
+    }
 
 }

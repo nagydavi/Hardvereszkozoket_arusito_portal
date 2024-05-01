@@ -12,6 +12,14 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { SsdviewComponent } from '../../View/ssdview/ssdview.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-ssdlist',
@@ -25,12 +33,20 @@ import { SsdviewComponent } from '../../View/ssdview/ssdview.component';
         MatCardActions,
         MatButton,
         MatCardHeader,
-        MatPaginator
+        MatPaginator,
+        MatExpansionModule,
+        MatInputModule,
+        MatSlideToggleModule,
+        MatFormFieldModule,
+        MatIconModule,
+        FormsModule
   ],
   templateUrl: './ssdlist.component.html',
   styleUrl: './ssdlist.component.scss'
 })
 export class SsdlistComponent {
+
+
   assetUrl = environment.apiUrl + 'assets/';
 
   ssd: SSD[] = [];
@@ -38,6 +54,9 @@ export class SsdlistComponent {
   imageDB: Image[] = [];
   storedSsd: SSD[] = [];
   ssdSlice: SSD[] = [];
+  searchName: any;
+  isOnSale: any;
+  searchStorage: any;
 
   constructor(private readService: ReadService, private dialog: MatDialog,private snackBar: MatSnackBar){}
 
@@ -50,7 +69,7 @@ export class SsdlistComponent {
     this.readService.getAllSSD().subscribe(
         (res: SSD[]) => {
             this.ssd=res;
-            this.ssdSlice = this.ssd.slice(0,8)
+            this.ssdSlice = this.ssd.slice(0,8);
     });
   }
   getMainImageSsd() {
@@ -124,6 +143,26 @@ export class SsdlistComponent {
     }
     this.ssdSlice = this.ssd.slice(startIndex,endIndex)
   }
+  
+  search() {
+    this.ssdSlice = this.ssd.slice(0,8);
+    if (this.searchName) { 
+      this.ssdSlice = this.ssdSlice.filter(ssd => ssd.name.toLowerCase().includes(this.searchName.toLowerCase()));
+    }
+    if (this.isOnSale) { 
+      this.ssdSlice = this.ssdSlice.filter(ssd => ssd.discount == 1);
+    }
+    if (this.searchStorage) { 
+      this.ssdSlice = this.ssdSlice.filter(ssd => ssd.storage >= this.searchStorage);
+    }
 
+
+  }
+  delete() {
+    this.isOnSale = false;
+    this.searchName = '';
+    this.searchStorage = null;
+    this.ssdSlice = this.ssd.slice(0,8);
+    }
 
 }

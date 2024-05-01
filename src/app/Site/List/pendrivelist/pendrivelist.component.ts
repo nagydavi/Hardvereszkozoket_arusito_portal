@@ -12,6 +12,12 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { PendriveviewComponent } from '../../View/pendriveview/pendriveview.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-pendrivelist',
@@ -25,7 +31,13 @@ import { PendriveviewComponent } from '../../View/pendriveview/pendriveview.comp
         MatCardActions,
         MatButton,
         MatCardHeader,
-        MatPaginator
+        MatPaginator,
+        MatExpansionModule,
+        MatInputModule,
+        MatSlideToggleModule,
+        MatFormFieldModule,
+        MatIconModule,
+        FormsModule
   ],
   templateUrl: './pendrivelist.component.html',
   styleUrl: './pendrivelist.component.scss'
@@ -39,6 +51,11 @@ export class PendrivelistComponent {
   imageDB: Image[] = [];
   storedPendrive: Pendrive[] = [];
   pendriveSlice: Pendrive[] = [];
+  searchName: any;
+  isOnSale: any;
+  searchStorage: any;
+  searchWritespeed: any;
+
 
   constructor(private readService: ReadService, private dialog: MatDialog,private snackBar: MatSnackBar){}
 
@@ -127,6 +144,32 @@ export class PendrivelistComponent {
     }
     this.pendriveSlice = this.pendrive.slice(startIndex,endIndex)
   }
+
+  search() {
+    this.pendriveSlice = this.pendrive.slice(0,8);
+    if (this.searchName) { 
+      this.pendriveSlice = this.pendriveSlice.filter(pendrive => pendrive.name.toLowerCase().includes(this.searchName.toLowerCase()));
+    }
+    if (this.isOnSale) { 
+      this.pendriveSlice = this.pendriveSlice.filter(pendrive => pendrive.discount == 1);
+    }
+    if (this.searchStorage) { 
+      this.pendriveSlice = this.pendriveSlice.filter(pendrive => pendrive.storage >= this.searchStorage);
+    }
+    if (this.searchWritespeed) { 
+      
+      this.pendriveSlice = this.pendriveSlice.filter(pendrive => parseInt(pendrive.writespeed) >= this.searchWritespeed);
+    }
+
+
+  }
+  delete() {
+    this.isOnSale = false;
+    this.searchName = '';
+    this.searchStorage = null;
+    this.searchWritespeed = null;
+    this.pendriveSlice = this.pendrive.slice(0,8);
+    }
 
 
 }

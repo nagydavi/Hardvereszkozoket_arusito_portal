@@ -3,7 +3,7 @@ export class Laptop{
     name: string = '';
     main_picture:string = 'notfound.webp';
     resolution: string = '';
-    screen?: number;
+    screen: number = 0;
     processor: string = '';
     grafic_card: string = '';
     ram: string = '';

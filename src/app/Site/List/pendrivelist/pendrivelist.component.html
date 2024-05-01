@@ -1,4 +1,33 @@
 <app-menusite id="menu"></app-menusite>
+<div class="searchbar">
+  <div class="bardiv">
+    <mat-expansion-panel hideToggle class="bar">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="title">
+          Kereső
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="search-content">
+        <mat-form-field class="input-field">
+          <input matInput type="text" placeholder="Név" [(ngModel)]="searchName">
+        </mat-form-field><br>
+      <mat-form-field class="input-field">
+        <input matInput type="number" placeholder="Tárhely" [(ngModel)]="searchStorage">
+      </mat-form-field><br>
+      <mat-form-field class="input-field">
+        <input matInput type="number" placeholder="Írássebesség" [(ngModel)]="searchWritespeed">
+      </mat-form-field><br>
+      <mat-slide-toggle class="switch" [(ngModel)]="isOnSale">Akciós</mat-slide-toggle><br>
+
+      </div>
+      <div class="action">
+        <button  (click)="search()" class="search">Keresés</button><br>
+        <button  (click)="delete()" class="delete">Keresés feltételek törlése</button>
+
+      </div>
+    </mat-expansion-panel>
+  </div>
+</div>
 <div class="carddiv">
     <div class="card responsive-grid">
       <mat-card class="card" *ngFor="let p of pendriveSlice">

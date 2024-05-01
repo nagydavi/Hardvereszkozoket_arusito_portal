@@ -13,6 +13,12 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { LaptopviewComponent } from '../../View/laptopview/laptopview.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-laptoplist',
@@ -28,7 +34,13 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
         MatCardActions,
         MatButton,
         MatCardHeader,
-        MatPaginator
+        MatPaginator,
+        MatExpansionModule,
+        MatInputModule,
+        MatSlideToggleModule,
+        MatFormFieldModule,
+        MatIconModule,
+        FormsModule
     ]
 })
 export class LaptoplistComponent {
@@ -41,6 +53,18 @@ export class LaptoplistComponent {
     opSystem: OpSystem[] = [];
     storedLaptop: Laptop[] = [];
     laptopSlice: Laptop[] = [];
+
+    searchName: any;
+    isOnSale: any;
+    searchStorage: any;
+    searchResolution: any;
+    searchScreen: any;
+    searchProc: any;
+    searchGrafic: any;
+    searchRam: any;
+    searchOpSys: any;
+
+
 
     constructor(private readService: ReadService, private dialog: MatDialog,private snackBar: MatSnackBar){}
 
@@ -142,4 +166,50 @@ export class LaptoplistComponent {
         }
         this.laptopSlice = this.laptops.slice(startIndex,endIndex)
     }
+    search() {
+      this.laptopSlice = this.laptops.slice(0,8);
+
+      if (this.searchName) { 
+        this.laptopSlice = this.laptopSlice.filter(laptop => laptop.name.toLowerCase().includes(this.searchName.toLowerCase()));
+      }
+      if (this.isOnSale) { 
+        this.laptopSlice = this.laptopSlice.filter(laptop => laptop.discount == 1);
+      }
+      if (this.searchStorage) { 
+        this.laptopSlice = this.laptopSlice.filter(laptop => laptop.ssd.toLowerCase().includes(this.searchStorage.toString().toLowerCase()));
+      }
+      if (this.searchResolution) { 
+        this.laptopSlice = this.laptopSlice.filter(laptop => laptop.resolution.toLowerCase().includes(this.searchResolution.toLowerCase()));
+      }
+      if (this.searchScreen) { 
+        this.laptopSlice = this.laptopSlice.filter(laptop => laptop.screen >= this.searchScreen);
+      }
+      if (this.searchProc) { 
+        this.laptopSlice = this.laptopSlice.filter(laptop => laptop.processor.toLowerCase().includes(this.searchProc.toLowerCase()));
+      }
+      if (this.searchGrafic) { 
+        this.laptopSlice = this.laptopSlice.filter(laptop => laptop.grafic_card.toLowerCase().includes(this.searchGrafic.toLowerCase()));
+      }
+      if (this.searchRam) { 
+        this.laptopSlice = this.laptopSlice.filter(laptop => laptop.ram.toLowerCase().includes(this.searchRam.toString().toLowerCase()));
+      }
+      if (this.searchOpSys) { 
+        this.laptopSlice = this.laptopSlice.filter(laptop => this.getOpName(laptop.op_system_id).toLowerCase().includes(this.searchOpSys.toLowerCase()));
+      }
+      
+  
+  
+    }
+    delete() {
+      this.isOnSale = false;
+      this.searchName = '';
+      this.searchStorage = null;
+      this.searchResolution = '';
+      this.searchScreen = null;
+      this.searchProc = '';
+      this.searchGrafic = '';
+      this.searchOpSys = '';
+
+      this.laptopSlice = this.laptops.slice(0,8);
+      }
 }
