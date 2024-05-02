@@ -22,6 +22,10 @@
                     <mat-icon>memory</mat-icon>
                     <span>Pendrive</span>
                 </a>
+                <a mat-list-item routerLink="/admin/order" (click)="close(sidenav)">
+                    <mat-icon>local_shipping</mat-icon>
+                    <span>Megrendelés</span>
+                </a>
                 <a mat-list-item (click)="close(sidenav); logout()">
                     <mat-icon>exit_to_app</mat-icon>
                     <span>Kijelentkezés</span>
@@ -43,6 +47,7 @@
                     <li><a routerLink="/admin/ssd">SSD</a></li>
                     <li><a routerLink="/admin/ram">RAM</a></li>
                     <li><a routerLink="/admin/pendrive">Pendrive</a></li>
+                    <li><a routerLink="/admin/order">Megrendelés</a></li>
                     <li class="icon-center"><a (click)="logout()"><mat-icon class="logout-button">exit_to_app</mat-icon></a></li>
                 </ul>
             </div>

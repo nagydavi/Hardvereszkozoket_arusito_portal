@@ -1,0 +1,155 @@
+<app-menu></app-menu>
+<div class="center">
+    <div class="center-list">
+        <mat-expansion-panel hideToggle class="order-list">
+            <mat-expansion-panel-header>
+            <mat-panel-title>
+                Laptop megrendelések
+            </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-expansion-panel hideToggle class="order-list" *ngFor="let o of order">
+                <mat-expansion-panel-header *ngIf="o.type=='laptop'">
+                    <mat-panel-title>
+                        <table class="table-order-list">
+                            <tbody>
+                                <tr>
+                                    <td *ngIf="o.type=='laptop'">{{ o.name }}</td>
+                                    <td *ngIf="o.type=='laptop'">{{ o.email }}</td>
+                                    <td *ngIf="o.type=='laptop'">{{ o.phone }}</td>
+                                    <td *ngIf="o.type=='laptop'">{{ o.date }}</td>
+                                    <td *ngIf="o.type=='laptop'">{{ getLaptopById(o.product).name }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <table class="table-order-list" *ngIf="o.type=='laptop'">
+                    <tbody>
+                        <tr>
+                            <td *ngIf="o.type=='laptop'">{{ getLaptopById(o.product).name }}</td>
+                            <td *ngIf="o.type=='laptop'">{{ getLaptopById(o.product).resolution }}</td>
+                            <td *ngIf="o.type=='laptop'">{{ getLaptopById(o.product).screen }}</td>
+                            <td *ngIf="o.type=='laptop'">{{ getLaptopById(o.product).processor }}</td>
+                            <td *ngIf="o.type=='laptop'">{{ getLaptopById(o.product).grafic_card }}</td>
+                            <td *ngIf="o.type=='laptop'">{{ getLaptopById(o.product).ram }}</td>
+                            <td *ngIf="o.type=='laptop'">{{ getLaptopById(o.product).ssd }}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-expansion-panel>
+        </mat-expansion-panel>
+    </div>
+</div>
+<div class="center">
+    <div class="center-list">
+        <mat-expansion-panel hideToggle class="order-list">
+            <mat-expansion-panel-header>
+            <mat-panel-title>
+                Pendrive megrendelések
+            </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-expansion-panel hideToggle class="order-list" *ngFor="let o of order">
+                <mat-expansion-panel-header *ngIf="o.type=='pendrive'">
+                    <mat-panel-title>
+                        <table class="table-order-list">
+                            <tbody>
+                                <tr>
+                                    <td *ngIf="o.type=='pendrive'">{{ o.name }}</td>
+                                    <td *ngIf="o.type=='pendrive'">{{ o.email }}</td>
+                                    <td *ngIf="o.type=='pendrive'">{{ o.phone }}</td>
+                                    <td *ngIf="o.type=='pendrive'">{{ o.date }}</td>
+                                    <td *ngIf="o.type=='pendrive'">{{ getPendriveById(o.product).name }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <table class="table-order-list" *ngIf="o.type=='pendrive'">
+                    <tbody>
+                        <tr>
+                            <td *ngIf="o.type=='pendrive'">{{ getPendriveById(o.product).name }}</td>
+                            <td *ngIf="o.type=='pendrive'">{{ getPendriveById(o.product).sku }}</td>
+                            <td *ngIf="o.type=='pendrive'">{{ getPendriveById(o.product).storage }} GB</td>
+                            <td *ngIf="o.type=='pendrive'">{{ getPendriveById(o.product).writespeed }} MB/s</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-expansion-panel>
+        </mat-expansion-panel>
+    </div>
+</div>
+<div class="center">
+    <div class="center-list">
+        <mat-expansion-panel hideToggle class="order-list">
+            <mat-expansion-panel-header>
+            <mat-panel-title>
+                Ram megrendelések
+            </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-expansion-panel hideToggle class="order-list" *ngFor="let o of order">
+                <mat-expansion-panel-header *ngIf="o.type=='ram'">
+                    <mat-panel-title>
+                        <table class="table-order-list">
+                            <tbody>
+                                <tr>
+                                    <td *ngIf="o.type=='ram'">{{ o.name }}</td>
+                                    <td *ngIf="o.type=='ram'">{{ o.email }}</td>
+                                    <td *ngIf="o.type=='ram'">{{ o.phone }}</td>
+                                    <td *ngIf="o.type=='ram'">{{ o.date }}</td>
+                                    <td *ngIf="o.type=='ram'">{{ getRamById(o.product).name }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <table class="table-order-list" *ngIf="o.type=='ram'">
+                    <tbody>
+                        <tr>
+                            <td *ngIf="o.type=='ram'">{{ getRamById(o.product).name }}</td>
+                            <td *ngIf="o.type=='ram'">{{ getRamById(o.product).sku }}</td>
+                            <td *ngIf="o.type=='ram'">{{ getRamById(o.product).storage }} GB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-expansion-panel>
+        </mat-expansion-panel>
+    </div>
+</div>
+<div class="center">
+    <div class="center-list">
+        <mat-expansion-panel hideToggle class="order-list">
+            <mat-expansion-panel-header>
+            <mat-panel-title>
+                Ssd megrendelések
+            </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-expansion-panel hideToggle class="order-list" *ngFor="let o of order">
+                <mat-expansion-panel-header *ngIf="o.type=='ssd'">
+                    <mat-panel-title>
+                        <table class="table-order-list">
+                            <tbody>
+                                <tr>
+                                    <td *ngIf="o.type=='ssd'">{{ o.name }}</td>
+                                    <td *ngIf="o.type=='ssd'">{{ o.email }}</td>
+                                    <td *ngIf="o.type=='ssd'">{{ o.phone }}</td>
+                                    <td *ngIf="o.type=='ssd'">{{ o.date }}</td>
+                                    <td *ngIf="o.type=='ssd'">{{ getSsdById(o.product).name }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <table class="table-order-list" *ngIf="o.type=='ssd'">
+                    <tbody>
+                        <tr>
+                            <td *ngIf="o.type=='ssd'">{{ getSsdById(o.product).name }}</td>
+                            <td *ngIf="o.type=='ssd'">{{ getSsdById(o.product).sku }}</td>
+                            <td *ngIf="o.type=='ssd'">{{ getSsdById(o.product).storage }} GB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-expansion-panel>
+        </mat-expansion-panel>
+    </div>
+</div>

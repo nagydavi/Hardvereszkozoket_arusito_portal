@@ -27,16 +27,12 @@ export const routes: Routes = [
     {path: 'admin/ssd', loadChildren: () => import ('./Admin/ssd/ssd.module').then(m=>m.SsdModule),canActivate: [authGuard] },
     {path: 'admin/ram', loadChildren: () => import ('./Admin/ram/ram.module').then(m=>m.RamModule),canActivate: [authGuard] },
     {path: 'admin/pendrive', loadChildren: () => import ('./Admin/pendrive/pendrive.module').then(m=>m.PendriveModule),canActivate: [authGuard] },
+    {path: 'admin/order', loadChildren: () => import ('./Admin/order/order.module').then(m=>m.OrderModule),canActivate: [authGuard] },
     {path: 'site/cart', loadChildren: () => import ('./Site/cart/cart.module').then(m=>m.CartModule)},
     {path: 'site/laptops', loadChildren: () => import ('./Site/List/laptoplist/laptoplist.module').then(m=>m.LaptoplistModule)},
     {path: 'site/ssd', loadChildren: () => import ('./Site/List/ssdlist/ssdlist.module').then(m=>m.SsdlistModule)},
     {path: 'site/ram', loadChildren: () => import ('./Site/List/ramlist/ramlist.module').then(m=>m.RamlistModule)},
     {path: 'site/pendrive', loadChildren: () => import ('./Site/List/pendrivelist/pendrivelist.module').then(m=>m.PendrivelistModule)},
-
-
-
-
-
     {path: '', loadChildren: () => import ('./Site/home/home.module').then(m=>m.HomeModule)},
 
 

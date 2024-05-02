@@ -1,0 +1,21 @@
+.center{
+    display: flex;
+    justify-content: center;
+}
+.center-list{
+    width: 60%;
+}
+.order-list{
+    width: 100%;
+}
+
+
+//order adat kiírás
+.table-order-list {
+    width: 100%; 
+    table-layout: fixed; 
+  }
+  
+.table-order-list td {
+    width: 20%; 
+  }

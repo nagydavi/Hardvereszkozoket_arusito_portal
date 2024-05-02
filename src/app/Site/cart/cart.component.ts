@@ -334,7 +334,6 @@ export class CartComponent implements OnInit{
         )
 
       });
-      console.log(this.order);
       this.order = [];
       this.addres = '';
       this.name = '';
