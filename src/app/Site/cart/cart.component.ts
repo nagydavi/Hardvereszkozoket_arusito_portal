@@ -11,6 +11,15 @@ import { MatIcon } from '@angular/material/icon';
 import { OpSystem } from '../../Models/opsys';
 import { ReadService } from '../read.service';
 import { MatButton } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { Order } from '../../Models/order';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpClientModule } from '@angular/common/http';
+import { CartService } from './cart.service';
 
 @Component({
     selector: 'app-cart',
@@ -23,10 +32,17 @@ import { MatButton } from '@angular/material/button';
       MatDivider,
       CommonModule,
       MatIcon,
-      MatButton
+      MatButton,
+      MatInputModule,
+      MatSlideToggleModule,
+      MatFormFieldModule,
+      MatIconModule,
+      FormsModule,
+      HttpClientModule
     ]
 })
 export class CartComponent implements OnInit{
+
  
  
   cartLaptops: any[] = [];
@@ -34,9 +50,17 @@ export class CartComponent implements OnInit{
   cartRam: any[] = [];
   cartPendrive: any[] = [];
   opSystem: OpSystem[] = [];
+  order: Order[] = [];
+
+  name: any = '';
+  email: any = '';
+  addres: any = '';
+  phone: any = '';
 
 
-  constructor(private readService: ReadService){}
+
+
+  constructor(private readService: ReadService,private cartService: CartService,private snackBar: MatSnackBar){}
 
 
   ngOnInit(): void {
@@ -52,24 +76,32 @@ export class CartComponent implements OnInit{
     let storedDataLaptop = localStorage.getItem("laptop");
     if (storedDataLaptop) {
       this.cartLaptops = JSON.parse(storedDataLaptop);
+    }else{
+      this.cartLaptops = []
     }
   }
   getCartSsd(){
     let storedDataLaptop = localStorage.getItem("ssd");
     if (storedDataLaptop) {
       this.cartSsd = JSON.parse(storedDataLaptop);
+    }else{
+      this.cartSsd = [];
     }
   }
   getCartRam(){
     let storedDataLaptop = localStorage.getItem("ram");
     if (storedDataLaptop) {
       this.cartRam = JSON.parse(storedDataLaptop);
+    }else{
+      this.cartRam = []
     }
   }
   getCartPendrive(){
     let storedDataLaptop = localStorage.getItem("pendrive");
     if (storedDataLaptop) {
       this.cartPendrive = JSON.parse(storedDataLaptop);
+    }else{
+      this.cartPendrive = []
     }
   }
 
@@ -227,5 +259,102 @@ export class CartComponent implements OnInit{
     return price;
   }
 
+  buy() {
+    if(this.name !== '' && this.addres !=='' && this.email !== '' && this.phone !== ''){
+      if(this.cartLaptops){
+        this.cartLaptops.forEach((element)=>{
+          let product = new Order();
+          product.name = this.name;
+          product.address = this.addres;
+          product.email = this.email;
+          product.phone = this.phone;
+          product.type = 'laptop';
+          product.product = element.id;
+          product.date = new Date().toISOString();;
+          this.order.push(product);
+        });
+        this.cartLaptops = [];
+        localStorage.removeItem('laptop');
+
+      }
+      if(this.cartPendrive){
+        this.cartPendrive.forEach((element)=>{
+          let product = new Order();
+          product.name = this.name;
+          product.address = this.addres;
+          product.email = this.email;
+          product.phone = this.phone;
+          product.type = 'pendrive';
+          product.product = element.id;
+          product.date = new Date().toISOString();;
+          this.order.push(product);
+        });
+        this.cartPendrive = [];
+        localStorage.removeItem('pendrive');
+
+      }
+      if(this.cartRam){
+        this.cartRam.forEach((element)=>{
+          let product = new Order();
+          product.name = this.name;
+          product.address = this.addres;
+          product.email = this.email;
+          product.phone = this.phone;
+          product.type = 'ram';
+          product.product = element.id;
+          product.date = new Date().toISOString();;
+          this.order.push(product);
+        });
+        this.cartRam = [];
+        localStorage.removeItem('ram');
+
+        
+      }
+      if(this.cartSsd){
+        this.cartSsd.forEach((element)=>{
+          let product = new Order();
+          product.name = this.name;
+          product.address = this.addres;
+          product.email = this.email;
+          product.phone = this.phone;
+          product.type = 'ssd';
+          product.product = element.id;
+          product.date = new Date().toISOString();;
+          this.order.push(product);
+        });
+        this.cartSsd = [];
+        localStorage.removeItem('ssd');
+
+      }
+      this.order.forEach((element)=>{
+        this.cartService.create(element).subscribe(
+          (res: Order[])=>{
+            console.log(res);
+          }
+        )
+
+      });
+      console.log(this.order);
+      this.order = [];
+      this.addres = '';
+      this.name = '';
+      this.email = '';
+      this.phone = '';
+      this.snackBar.open('Rendelését rögzítettük', 'Értem', {
+        duration: 6000, // Megjelenési időtartam millisecondban (3 másodperc)
+        verticalPosition: 'bottom', // Elhelyezkedés: alul
+        horizontalPosition: 'center', // Elhelyezkedés: középen
+      });
+      
+    }else{
+      this.snackBar.open('Minden mező kitöltése kötelező!', 'Értem', {
+        duration: 3000, // Megjelenési időtartam millisecondban (3 másodperc)
+        verticalPosition: 'bottom', // Elhelyezkedés: alul
+        horizontalPosition: 'center', // Elhelyezkedés: középen
+    });
+      return;
+    }
+
+    }
 
 }

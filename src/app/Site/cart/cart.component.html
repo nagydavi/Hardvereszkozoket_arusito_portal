@@ -69,8 +69,22 @@
           </tbody>
         </table><br>
         <p id="to-pay">Fizetendő összeg: {{getAllPrice()}} Ft</p>
+        <div class="user-data">
+          <mat-form-field class="input-field">
+            <input matInput type="text" placeholder="Név" [(ngModel)]="name">
+          </mat-form-field><br>
+          <mat-form-field class="input-field">
+            <input matInput type="text" placeholder="Lakcím" [(ngModel)]="addres">
+          </mat-form-field><br>
+          <mat-form-field class="input-field">
+            <input matInput type="text" placeholder="Email" [(ngModel)]="email">
+          </mat-form-field><br>
+          <mat-form-field class="input-field">
+            <input matInput type="text" placeholder="Telefon" [(ngModel)]="phone">
+          </mat-form-field><br>
+        </div>
         <div class="center">
-            <button class="buy-button" mat-button >Megrendelés</button>
+            <button class="buy-button" mat-button (click)="buy()">Megrendelés</button>
         </div>
         <div class="center">
             <p>Boltunkban csak utánvéttel lehet fizetni!</p>
