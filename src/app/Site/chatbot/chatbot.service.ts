@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import OpenAI from "openai";
+import Configuration from "openai";
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,24 +10,24 @@ import OpenAI from "openai";
 export class ChatbotService {
 
 
-  private openai: any;
+  private openai: any = new OpenAI({ apiKey: environment.chatGPTApiKey, dangerouslyAllowBrowser: true });;
 
   constructor() {
-    this.openai = new OpenAI({ apiKey: environment.chatGPTApiKey, dangerouslyAllowBrowser: true });
   };
 
-  async chatWithGPT3() {
+  async chatWithGPT3(message: string): Promise<string> {
     
     try {
       const completion = await this.openai.chat.completions.create({
-        messages: [{ role: "system", content: "You are a helpful assistant." }],
+        messages: [{ role: "system", content: message }],
         model: "gpt-3.5-turbo",
       });
-      console.log('hello');
-      console.log(completion.choices[0]);
+      return completion.choices[0].message['content'];
     } catch (error) {
       console.error("Error during chat with GPT-3:", error);
     }
+    return 'Nincs válasz';
   }
+
 
 }

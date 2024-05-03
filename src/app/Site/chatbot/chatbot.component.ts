@@ -6,6 +6,7 @@ import { MatFormField, MatFormFieldControl, MatFormFieldModule } from '@angular/
 import { CommonModule } from '@angular/common';
 import { ChatbotService } from './chatbot.service';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-chatbot',
@@ -30,9 +31,15 @@ export class ChatbotComponent {
   message: string[] = [];
 
 
-  constructor(private chatService: ChatbotService){}
+  constructor(private chatService: ChatbotService,private snackBar: MatSnackBar){}
 
-  send(promt: string) {
-    this.chatService.chatWithGPT3();
+  async send(promt: string) {
+    this.snackBar.open('Kérjük várjon a válaszra, türelmét köszönjük!', 'Értem', {
+      duration: 3000, // Megjelenési időtartam millisecondban (3 másodperc)
+      verticalPosition: 'bottom', // Elhelyezkedés: alul
+      horizontalPosition: 'center', // Elhelyezkedés: középen
+    });
+    this.message.push(await this.chatService.chatWithGPT3(promt));
+    promt = '';
   }
 }

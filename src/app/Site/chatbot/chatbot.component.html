@@ -1,7 +1,9 @@
 <app-menusite id="menu"></app-menusite>
 <div class="center">
     <div class="chat-bot-response">
-    <p *ngFor="let response of message">{{ response }}</p>
+        <div *ngFor="let response of message">
+            <p>{{ response }}</p><br>
+        </div>
     </div>
 </div>
 <div class="center">
