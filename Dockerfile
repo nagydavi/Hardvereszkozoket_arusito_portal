@@ -6,6 +6,7 @@ RUN npm install -g @angular/cli
 EXPOSE 4200
 RUN npm install -g @angular/cli
 RUN npm install @angular/flex-layout --save
+RUN npm install --save openai
 CMD [ "ng","serve","--host","0.0.0.0" ]
 
 

@@ -1,0 +1,15 @@
+<app-menusite id="menu"></app-menusite>
+<div class="center">
+    <div class="chat-bot-response">
+    <p *ngFor="let response of message">{{ response }}</p>
+    </div>
+</div>
+<div class="center">
+    <div class="chat-bot-input">
+        <mat-form-field class="input-field">
+            <input matInput type="text" placeholder="Promt" [(ngModel)]="promt">
+        </mat-form-field>
+        <button class="buttons" mat-button (click)="send(promt)">Küldés</button>
+    </div>
+</div>
+<app-footer id="footer"></app-footer>

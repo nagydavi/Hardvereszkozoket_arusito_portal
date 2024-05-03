@@ -22,7 +22,7 @@
                     <mat-icon>memory</mat-icon>
                     <span>Pendrive</span>
                 </a>
-                <a mat-list-item (click)="close(sidenav); chatDialog()">
+                <a mat-list-item routerLink="/site/chatbot" (click)="close(sidenav)">
                     <mat-icon>question_answer</mat-icon>
                     <span>Chatbot</span>
                 </a>
@@ -48,7 +48,7 @@
                     <li><a routerLink="/site/ssd">SSD</a></li>
                     <li><a routerLink="/site/ram">RAM</a></li>
                     <li><a routerLink="/site/pendrive">Pendrive</a></li>
-                    <li><a (click)="chatDialog()">Chatbot</a><mat-icon>question_answer</mat-icon></li>
+                    <li><a routerLink="/site/chatbot">Chatbot</a><mat-icon>question_answer</mat-icon></li>
                     <li class="icon-center"><a routerLink="/site/cart"><mat-icon class="logout-button" [matBadge]="getCartNumber()" matBadgeColor="warn" aria-hidden="false">shopping_cart</mat-icon></a></li>
                 </ul>
             </div>

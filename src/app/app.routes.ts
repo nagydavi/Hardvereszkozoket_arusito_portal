@@ -33,6 +33,7 @@ export const routes: Routes = [
     {path: 'site/ssd', loadChildren: () => import ('./Site/List/ssdlist/ssdlist.module').then(m=>m.SsdlistModule)},
     {path: 'site/ram', loadChildren: () => import ('./Site/List/ramlist/ramlist.module').then(m=>m.RamlistModule)},
     {path: 'site/pendrive', loadChildren: () => import ('./Site/List/pendrivelist/pendrivelist.module').then(m=>m.PendrivelistModule)},
+    {path: 'site/chatbot', loadChildren: () => import ('./Site/chatbot/chatbot.module').then(m=>m.ChatbotModule)},
     {path: '', loadChildren: () => import ('./Site/home/home.module').then(m=>m.HomeModule)},
 
 
