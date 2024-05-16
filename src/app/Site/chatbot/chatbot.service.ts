@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import OpenAI from "openai";
-import Configuration from "openai";
 
 
 @Injectable({

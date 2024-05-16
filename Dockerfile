@@ -9,5 +9,3 @@ RUN npm install @angular/flex-layout --save
 RUN npm install --save openai
 CMD [ "ng","serve","--host","0.0.0.0" ]
 
-
-

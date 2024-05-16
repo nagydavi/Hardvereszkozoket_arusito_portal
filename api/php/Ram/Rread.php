@@ -31,5 +31,4 @@ while($line = mysqli_fetch_assoc($execute)) {
 
 echo json_encode(['ram' => $ram]);
 
-
 ?>

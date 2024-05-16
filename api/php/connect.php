@@ -5,15 +5,12 @@ $database = "db";
 $username = "root";
 $password = "root";
 
-
-
-// Connection
+// Kapcsolódás
 $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) {
     exit('Connection failed: '.mysqli_connect_error().PHP_EOL);
 }
 
-// Special characters
+// Speciális karakterek beállítása
 mysqli_set_charset($conn, 'utf-8');
-
 ?>
